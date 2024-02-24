@@ -34,3 +34,4 @@ npm run build
 npm run lint
 ```
 # vue-week6
+# fun-drink
