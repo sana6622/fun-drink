@@ -1,0 +1,89 @@
+@import '../assets/reset.scss';
+
+#home {
+    background-color: pink;
+
+    .banner {
+        height: calc(100vh);
+        background: url(../../public/ImgBanner.png) no-repeat;
+        background-size: cover;
+        padding-top: 200px;
+        padding-bottom: 190px;
+
+        .banner-text {
+            outline: 2px solid red;
+            padding-left: 150px;
+
+
+
+
+        }
+
+    }
+
+    .home-container {
+        background-color: grey;
+        padding-right: 200px;
+        padding-left: 200px;
+    }
+
+    .customer {
+        position: relative;
+
+        .customer-main {
+            width: 100%;
+            position: absolute;
+            outline: 2px solid blue;
+            top: -120px;
+            z-index: 2px;
+            background: url(../../public/ImgFeatureBg.png) no-repeat;
+            background-size: cover;
+            padding-right: 200px;
+            padding-left: 200px;
+            padding-top: 50px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+        .customer-items {
+            .customer-item {
+                outline: 3px solid pink;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+
+                .item-image {
+                    width: 300px;
+               
+                    
+
+                    img {
+                        width: 100%;
+                    }
+
+                    margin-right: 50px;
+                }
+                .item-text{
+                
+
+                }
+                
+            }
+            .customer-item:nth-child(even){
+                flex-direction: row-reverse ;
+            }
+            
+            
+
+        }
+
+
+    }
+
+}
