@@ -10,4 +10,8 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 
-<style scoped></style>
+<style scoped>
+body{
+  font-family: 'Noto Sans TC', sans-serif;
+}
+</style>

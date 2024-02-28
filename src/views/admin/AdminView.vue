@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="AdminView">
     <h2>這是後台</h2>
     <nav>
       <RouterLink to="/admin/adminHome">後台首頁</RouterLink> |
@@ -44,3 +44,12 @@ export default {
   }
 };
 </script>
+<style  lang="scss">
+@import '../../assets/reset.scss';
+
+#AdminView {
+  width: 100%; 
+  font-family: 'Noto Sans TC', sans-serif;   
+  
+}
+</style>

@@ -4,8 +4,8 @@
       <div class="container-fluid">
         <RouterLink to="/">      
         <div class="logo">
-          <img src="../../../public/logoBig.png" alt="logo" class="d-none d-sm-block" />
-          <img src="../../../public/logoSm.png" alt="logo-sm" class="d-block d-sm-none" />
+          <img src="../../../public/logoBig.png" alt="logo"  />
+          <!-- <img src="../../../public/logoSm.png" alt="logo-sm" class="d-block d-sm-none" /> -->
         </div>
       </RouterLink>
         <button
@@ -64,13 +64,15 @@ export default {
 @import '../../assets/reset.scss';
 
 #FrontView {
-  width: 100%;  
+  width: 100%; 
+  font-family: 'Noto Sans TC', sans-serif;    
   .navbar { 
     width: 100%;
     position: fixed;
     padding: 0;
     background-color: #fee69c;
     padding: 12px 120px;
+    z-index: 99;
     ul {
       margin-left: auto;
       display: flex;
@@ -102,7 +104,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .navbar {
       ul {
         display: block;
@@ -114,17 +116,26 @@ export default {
       }
     }
   }
-  @media screen and (max-width: 576px) {
-    .navbar{
+  @media screen and (max-width: 575px) {
+    .navbar {
       .logo {
-      width: 80px;
+      width: 250px;
 
       img {
-        width: 100%;
+        width: 80%;
       }
     }
     }
-
   }
+  @media screen and (max-width: 375px) {
+    .navbar {
+      .logo {
+      width: 200px;
+
+
+    }
+    }
+  }
+
 }
 </style>
