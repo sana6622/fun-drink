@@ -1,4 +1,5 @@
 @import '../assets/reset.scss';
+// @import 'https://fonts.googleapis.com/css2?family=Coiny&display=swap'; 
 
 #home {
     font-family: 'Noto Sans TC', sans-serif;
@@ -6,10 +7,12 @@
     .banner {
         padding-top: calc(40px + 1.5vw);
         position: relative;
+
         .banner-img-bg,
         .banner-img-sm {
             width: 100%;
             z-index: -2;
+
             img {
                 width: 100%;
             }
@@ -78,13 +81,11 @@
             }
 
             .banner-img-sm {
-
                 img {
                     //圖片往上移 (類似剪裁效果)    
                     object-fit: cover;
                     object-position: 0px -30vh;
                 }
-
             }
 
             .banner-text {
@@ -97,7 +98,6 @@
                     font-size: calc(24px + 1.5vw);
                     padding-bottom: 30px;
                     padding-left: 12px;
-
                 }
 
                 h2,
@@ -128,54 +128,95 @@
 
     .customer {
         position: relative;
+        // background-color: paleturquoise;          
 
-        .customer-img-bg,
-        .customer-img-sm {
-            width: 100%;
-            position: absolute;
-            top: -200px;
-            z-index: 1;
+        // .customer-img-bg,
+        // .customer-img-sm {
+        //     width: 100%;
+        //     position: absolute;
+        //     top: -200px;
+        //     z-index: 1;
+        //     outline:10px solid red;
 
-            img {
-                width: 100%;
-            }
+        //     img {
+        //         width: 100%;
+        //     }
 
-            @media screen and (max-width: 1480px) {
-                top: -150px;
-            }
+        //     @media screen and (max-width: 1480px) {
+        //         top: -150px;
+        //     }
 
-            @media screen and (max-width: 1200px) {
-                top: -120px;
-            }
+        //     @media screen and (max-width: 1200px) {
+        //         top: -120px;
+        //     }
 
-            @media screen and (max-width: 1000px) {
-                top: -100px;
-            }
+        //     @media screen and (max-width: 1000px) {
+        //         top: -100px;
+        //     }
 
-            @media screen and (max-width: 767px) {
-                top: calc(-70px - 1.5vw);
-            }
+        //     @media screen and (max-width: 767px) {
+        //         top: calc(-70px - 1.5vw);
+        //     }
 
-            @media screen and (max-width: 575px) {
-                top: -240px;
-            }
-        }
+        //     @media screen and (max-width: 575px) {
+        //         top: -240px;
+        //     }
+        // }
 
 
         .customer-main {
             width: 100%;
-            position: absolute;
             z-index: 1;
-            padding-right: 200px;
-            padding-left: 200px;
-            padding-top: 0px;
+            background: url(../../public/ImgFeatureBg.png);
+            background-size: 100% 100%;
+            /* 保持宽度不变，高度拉伸至容器的100% */
+            background-repeat: no-repeat;
+            margin-top: -240px;
+            padding-top: 50px;
+            padding-bottom: 100px;
+
+            h3 {
+                font-size: 32px;
+                font-weight: 700;
+                margin-bottom: 80px;
+            }
+
+            @media screen and (max-width: 1480px) {
+                margin-top: -200px;
+            }
+
+            @media screen and (max-width: 1200px) {
+                margin-top: -200px;
+            }
+
+            @media screen and (max-width: 1000px) {
+                margin-top: -160px;
+            }
+
+            @media screen and (max-width: 767px) {
+                margin-top: calc(-100px - 1.5vw);
+
+                h3 {
+                    font-size: 24px;
+                    margin-bottom: 40px;
+                }
+            }
+
+            @media screen and (max-width: 575px) {
+                background: url(../../public/ImgFeatureBgM.png);
+                background-size: 100% 100%;
+                /* 保持宽度不变，高度拉伸至容器的100% */
+                background-repeat: no-repeat;
+                margin-top: -250px;
+
+                h3 {
+                    margin-bottom: 20px;
+                }
+            }
+
         }
 
-        h3 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 80px;
-        }
+
 
         .customer-items {
             .customer-item {
@@ -184,7 +225,6 @@
                 align-items: center;
                 margin-bottom: 10px;
                 gap: 20px;
-
 
                 .item-image {
                     flex: 1 1 0;
@@ -205,13 +245,11 @@
                     }
 
                     p {
-
                         font-size: 24px;
                         font-weight: 400;
                         line-height: 36px;
                     }
                 }
-
             }
 
             .customer-item:nth-child(even) {
@@ -219,22 +257,19 @@
             }
         }
 
-        @media screen and (max-width: 1200px) {
-            .customer-main {
-                padding-right: 120px;
-                padding-left: 120px;
-            }
-        }
+
 
         @media screen and (max-width: 991px) {
             .customer-items {
                 .customer-item {
                     .item-image {
                         width: 80%;
+
                         img {
                             width: 100%;
                         }
                     }
+
                     .item-text {
                         h4 {
                             font-size: 24px;
@@ -248,16 +283,12 @@
                         }
                     }
                 }
-
             }
 
         }
 
         @media screen and (max-width: 767px) {
-            h3{
-                font-size: 24px;
-                margin-bottom: 40px;
-            }
+
             .customer-items {
                 .customer-item {
                     .item-text {
@@ -273,21 +304,10 @@
                         }
                     }
                 }
-
             }
         }
 
         @media screen and (max-width: 575px) {
-            h3 {
-                margin-bottom: 20px;
-            }
-
-            .customer-main {
-                margin-top: -180px;
-                padding-right: 20px;
-                padding-left: 20px;
-            }
-
             .customer-items {
                 .customer-item {
                     flex-direction: column;
@@ -309,13 +329,183 @@
                     }
                 }
 
-                .customer-item:nth-child(even) {   
+                .customer-item:nth-child(even) {
                     flex-direction: column;
                 }
             }
+        }
+    }
 
+    .manufacture {
+        background-color: green;
+        margin-top: -150px;
+        padding-top: 150px;
+        z-index: -1;
+        background: url(../../public/ImgBg.png);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+
+        .main-drink {
+            flex: 1;
+            position: relative;
+
+            img {
+                width: 100%;
+            }
+
+            :nth-child(2) {
+                width: 30%;
+                position: absolute;
+                right: 0;
+                top: calc(-30px - 1.5vw);
+            }
         }
 
+        .main-step {
+            flex: 1;
+            /* 设置计数器sectionCounter的初始值为0 */
+            counter-reset: sectionCounter 0;
+
+            h3 {
+                font-size: 32px;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            ul {
+                padding-left: 30px;
+
+
+                li {
+                    font-size: 24px;
+                    font-weight: 500;
+                    border-radius: 8px;
+                    background-color: #fff;
+                    position: relative;
+                    padding: 20px 24px 20px 50px;
+                    margin-bottom: 35px;
+                }
+
+                ::before {
+                    counter-increment: sectionCounter;
+                    /* 计數器 */
+                    content: "0" counter(sectionCounter);
+                    /* 顯示 */
+                    font-family: "Coiny", system-ui;
+                    color: #fff;
+                    background-image: linear-gradient(to top left, #E94709, #EDB250);
+                    border-radius: 50%;
+                    font-size: 17px;
+                    position: absolute;
+                    top: -15px;
+                    left: -15px;
+                    padding: 13px 11px 12px 11px;
+                }
+
+                :nth-child(1)::after,
+                :nth-child(2)::after,
+                :nth-child(3)::after,
+                :nth-child(4)::after {
+                    content: '';
+                    border: 20px solid;
+                    border-color: white transparent transparent transparent;
+                    position: absolute;
+                    bottom: -40px;
+                    right: 40%;
+
+                }
+
+            }
+
+            button {
+                font-size: 24px;
+                font-weight: 500;
+                line-height: 28px;
+                color: #fff;
+                background-color: #E94709;
+                border: 0;
+                border-radius: 8px;
+                cursor: pointer;
+                padding: 17px 0;
+                margin-left: 30px;
+                width: 93%;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+            .main-drink { 
+                :nth-child(2) {
+                    top: calc(-70px - 1.5vw);
+                }
+            }
+
+            .main-step {
+                flex: 0;
+                width: 100%;
+                /* 设置计数器sectionCounter的初始值为0 */
+                counter-reset: sectionCounter 0;
+
+                h3 {
+                    font-size: 28px;
+                    font-weight: 700;
+                    margin-bottom: 30px;
+                }
+                ul {
+                    padding-left: 0px;
+
+                    li {
+                        font-size: 20px;
+                        line-height: 24px;
+                        padding: 16px 0 16px 20px;
+                        text-align: center;
+                        margin-bottom: 25px;
+                    }
+                    ::before {
+                        top: 8px;
+                        left: 20px;
+                        padding: 10px 10px 8px 10px;
+                    }
+                    :nth-child(1)::after,
+                    :nth-child(2)::after,
+                    :nth-child(3)::after,
+                    :nth-child(4)::after {
+                        content: '';
+                        border: 18px solid;
+                        border-color: white transparent transparent transparent;
+                        position: absolute;
+                        bottom: -35px;
+                        right: 45%;
+                    }
+                }
+                button {
+                    width: 100%;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 24px;
+                    margin-left: 0px;
+                }
+            }
+        }
+    }
+
+    /*共用*/
+    .section-container {
+        padding-right: 200px;
+        padding-left: 200px;
+
+        @media screen and (max-width: 1200px) {
+            padding-right: 120px;
+            padding-left: 120px;
+        }
+
+        @media screen and (max-width: 575px) {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
     }
 
 }
