@@ -45,7 +45,10 @@
     <RouterLink to="/admin/adminHome">進入後台首頁</RouterLink>
   </nav> -->
     <router-view></router-view>   
-  </div>
+    <div class="footer">
+      <div>footerffooterfootefooterfooteooter</div>
+    </div>
+  </div>  
 </template>
 
 <script>
@@ -97,6 +100,18 @@ export default {
       }
     }
   }
+
+  .footer{
+    position: relative;
+        height: 500px;
+        background: url(../../../public/ImgBg.png);
+        background-size: 100% 100%;       
+        z-index: -1;
+        margin-top: -150px;
+        padding-top: 150px;
+       
+    }
+
 
   @media screen and (max-width: 992px) {
     .navbar {
