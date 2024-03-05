@@ -327,7 +327,7 @@ export default {
     RiShoppingCart2Line,
     RiStarSLine,
     Swiper,
-      SwiperSlide,
+    SwiperSlide,
   },
   methods: {
     onSwiper(swiper) {
