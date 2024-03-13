@@ -98,10 +98,10 @@
             <li>選擇冷熱</li>
             <li>為自己的飲品命名</li>
           </ul>
-          <button type="button" class=" btn btn-danger">立即開始製作</button>
+          <button type="button" class="btn btn-danger">立即開始製作</button>
         </div>
       </section>
-      <!--end manufacture-->   
+      <!--end manufacture-->
 
       <section class="news section-container">
         <h3>最新消息</h3>
@@ -148,108 +148,133 @@
           </li>
         </ul>
         <div class="news-button">
-          <button type="button" class=" btn btn-outline-danger">更多最新消息</button>
-        </div>    
-      </section>    
+          <button type="button" class="btn btn-outline-danger">更多最新消息</button>
+        </div>
+      </section>
       <!--end of new-->
 
       <section class="products section-container">
         <ul class="products-title">
-          <li>
-            創意飲品
-          </li>
-          <li>
-            熱門飲料
-          </li>
-          <li>
-            熱門配料
-          </li>
+          <li>創意飲品</li>
+          <li>熱門飲料</li>
+          <li>熱門配料</li>
         </ul>
-        <ul class="products-list">
-          <li class="list-card">
-            <p class="card-tag-before"></p>
-            <p class="card-tag">最佳創意</p>
-            <p class="card-tag-"></p>
-            <div class="card-img">
-              <img src="../../../public/imgDrink.png" alt="">
-            </div> 
+        <div class="products-swiper">
+          <swiper
+            :slidesPerView="1"
+            :spaceBetween="10"
+            :navigation="navigation"
+            :pagination="{        
+        clickable: true,
+      }"
+            :breakpoints="breakpoints"
+            :modules="modules"           
+            class="mySwiper"
+          >
+          <!-- :autoplay="{ display: 1000, disableOnInteraction: false }" -->
+            <swiper-slide class="card">
+              <div class="list-card">
+                <p class="card-tag-before"></p>
+                <p class="card-tag">最佳創意</p>
+                <p class="card-tag-"></p>
+                <div class="card-img">
+                  <img src="../../../public/imgDrink.png" alt="" />
+                </div>
 
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。</p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>             
-                <span>原價 $75</span>                
-              </div>           
-            <div class="card-btn">
-              <button type="button" class=" btn btn-outline-danger">加入調飲室</button>
-              <button type="button" class=" btn btn-danger">加入購物車</button>
-            </div>
-            
-            
-          </li>
-          <li class="list-card">
-            <p class="card-tag-before"></p>
-            <p class="card-tag">最佳創意</p>
-            <p class="card-tag-"></p>
-            <div class="card-img">
-              <img src="../../../public/imgDrink.png" alt="">
-            </div> 
+                <h6>珍珠鮮奶茶</h6>
+                <p class="card-des">
+                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
+                </p>
+                <p class="card-more">查看詳情</p>
+                <div class="card-price">
+                  <span>優惠價 $65</span>
+                  <span>原價 $75</span>
+                </div>
+                <div class="card-btn">
+                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
+                  <button type="button" class="btn btn-danger">加入購物車</button>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide class="card">
+              <div class="list-card">
+                <p class="card-tag-before"></p>
+                <p class="card-tag">最佳創意</p>
+                <p class="card-tag-"></p>
+                <div class="card-img">
+                  <img src="../../../public/imgDrink.png" alt="" />
+                </div>
 
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。</p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>             
-                <span>原價 $75</span>                
-              </div>           
-            <div class="card-btn">
-              <button type="button" class=" btn btn-outline-danger">加入調飲室</button>
-              <button type="button" class=" btn btn-danger">加入購物車</button>
-            </div>
-            
-            
-          </li>
-          <li class="list-card">
-            <p class="card-tag-before"></p>
-            <p class="card-tag">最佳創意</p>
-            <p class="card-tag-"></p>
-            <div class="card-img">
-              <img src="../../../public/imgDrink.png" alt="">
-            </div> 
+                <h6>珍珠鮮奶茶</h6>
+                <p class="card-des">
+                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
+                </p>
+                <p class="card-more">查看詳情</p>
+                <div class="card-price">
+                  <span>優惠價 $65</span>
+                  <span>原價 $75</span>
+                </div>
+                <div class="card-btn">
+                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
+                  <button type="button" class="btn btn-danger">加入購物車</button>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide class="card">
+              <div class="list-card">
+                <p class="card-tag-before"></p>
+                <p class="card-tag">最佳創意</p>
+                <p class="card-tag-"></p>
+                <div class="card-img">
+                  <img src="../../../public/imgDrink.png" alt="" />
+                </div>
 
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。</p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>             
-                <span>原價 $75</span>                
-              </div>           
-            <div class="card-btn">
-              <button type="button" class=" btn btn-outline-danger">加入調飲室</button>
-              <button type="button" class=" btn btn-danger">加入購物車</button>
-            </div>
-            
-            
-          </li>
-          
-         
+                <h6>珍珠鮮奶茶</h6>
+                <p class="card-des">
+                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
+                </p>
+                <p class="card-more">查看詳情</p>
+                <div class="card-price">
+                  <span>優惠價 $65</span>
+                  <span>原價 $75</span>
+                </div>
+                <div class="card-btn">
+                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
+                  <button type="button" class="btn btn-danger">加入購物車</button>
+                </div>
+              </div>
+            </swiper-slide>
+            <swiper-slide class="card">
+              <div class="list-card">
+                <p class="card-tag-before"></p>
+                <p class="card-tag">最佳創意</p>
+                <p class="card-tag-"></p>
+                <div class="card-img">
+                  <img src="../../../public/imgDrink.png" alt="" />
+                </div>
 
+                <h6>珍珠鮮奶茶</h6>
+                <p class="card-des">
+                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
+                </p>
+                <p class="card-more">查看詳情</p>
+                <div class="card-price">
+                  <span>優惠價 $65</span>
+                  <span>原價 $75</span>
+                </div>
+                <div class="card-btn">
+                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
+                  <button type="button" class="btn btn-danger">加入購物車</button>
+                </div>
+              </div>
+            </swiper-slide>
+          </swiper>
+          <div class="swiper-navigation">
+            <div class="swiper-button-prev" ></div>
+            <div class="swiper-button-next" ></div>
+          </div>
 
-        </ul>
-
-        <!-- <swiper
-    :slides-per-view="3"
-    :space-between="50"
-    @swiper="onSwiper"
-    @slideChange="onSlideChange"
-  >
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-    ...
-  </swiper> -->
-
+        </div>
       </section>
       <!--end of products-->
       <section class="recommend section-container">
@@ -257,91 +282,107 @@
         <ul>
           <li>
             <div class="recommend-title">
-              <img class="title-img" src="../../../public/people1.png" alt="">
+              <img class="title-img" src="../../../public/people1.png" alt="" />
               <div class="title-star">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">      
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
               </div>
             </div>
             <div class="recommend-info">
               <p>王小明</p>
-              <p>這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！</p>
+              <p>
+                這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！
+              </p>
             </div>
           </li>
           <li>
             <div class="recommend-title">
-              <img class="title-img" src="../../../public/people1.png" alt="">
+              <img class="title-img" src="../../../public/people1.png" alt="" />
               <div class="title-star">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">      
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
               </div>
             </div>
             <div class="recommend-info">
               <p>王小明</p>
-              <p>這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！</p>
+              <p>
+                這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！
+              </p>
             </div>
           </li>
           <li>
             <div class="recommend-title">
-              <img class="title-img" src="../../../public/people1.png" alt="">
+              <img class="title-img" src="../../../public/people1.png" alt="" />
               <div class="title-star">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">
-                <img src="../../../public/grade.png" alt="">      
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
+                <img src="../../../public/grade.png" alt="" />
               </div>
             </div>
             <div class="recommend-info">
               <p>王小明</p>
-              <p>這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！</p>
+              <p>
+                這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！
+              </p>
             </div>
           </li>
         </ul>
       </section>
     </main>
-
-
   </div>
 </template>
 
 <script>
-// import HelloWorld from '@/components/HelloWorld.vue';
 import { RiShoppingCart2Line } from '@remixicon/vue'
-import {RiStarSLine}  from '@remixicon/vue'
+import { RiStarSLine } from '@remixicon/vue'
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
-// Import Swiper styles
-import 'swiper/css';
+import 'swiper/css' // core Swiper
+import 'swiper/css/navigation' // Navigation module
+import 'swiper/css/pagination' // Pagination module
+
+import { Pagination, Navigation, Autoplay } from 'swiper'
 
 export default {
   components: {
-    // HelloWorld
     RiShoppingCart2Line,
     RiStarSLine,
     Swiper,
-    SwiperSlide,
+    SwiperSlide
   },
-  methods: {
-    onSwiper(swiper) {
-      console.log(swiper);
-    },
-    onSlideChange() {
-      console.log('slide change');
-    },
-  },
+  data() {
+    return {
+      modules: [Navigation, Pagination, Autoplay],
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      breakpoints: {
+        0: { slidesPerView: 1, spaceBetween: 10 },
+        375: { slidesPerView: 1, spaceBetween: 10 },
+        576: { slidesPerView: 1, spaceBetween: 10 },
+        768: { slidesPerView: 2, spaceBetween: 10 },
+        992: { slidesPerView: 2, spaceBetween: 10 },
+        1200: { slidesPerView: 3, spaceBetween: 10 },
+        1400: { slidesPerView: 3, spaceBetween: 10 },
+      },
+    }
+  }
 }
 </script>
 
 <style >
 @import '../../assets/home.scss';
 @import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+@import '../../assets/swiper.scss';
 </style>
 

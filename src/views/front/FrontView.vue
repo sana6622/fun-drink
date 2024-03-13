@@ -2,12 +2,12 @@
   <div id="FrontView">
     <nav class="navbar navbar-expand-md">
       <div class="container-fluid">
-        <RouterLink to="/">      
-        <div class="logo">
-          <img src="../../../public/logoBig.png" alt="logo"  />
-          <!-- <img src="../../../public/logoSm.png" alt="logo-sm" class="d-block d-sm-none" /> -->
-        </div>
-      </RouterLink>
+        <RouterLink to="/">
+          <div class="logo">
+            <img src="../../../public/logoBig.png" alt="logo" />
+            <!-- <img src="../../../public/logoSm.png" alt="logo-sm" class="d-block d-sm-none" /> -->
+          </div>
+        </RouterLink>
         <button
           class="navbar-toggler"
           type="button"
@@ -44,11 +44,11 @@
     <RouterLink to="/login">登入</RouterLink> |
     <RouterLink to="/admin/adminHome">進入後台首頁</RouterLink>
   </nav> -->
-    <router-view></router-view>   
+    <router-view></router-view>
     <div class="footer">
       <div>footerffooterfootefooterfooteooter</div>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -67,9 +67,9 @@ export default {
 @import '../../assets/reset.scss';
 
 #FrontView {
-  width: 100%; 
-  font-family: 'Noto Sans TC', sans-serif;    
-  .navbar { 
+  width: 100%;
+  font-family: 'Noto Sans TC', sans-serif;
+  .navbar {
     width: 100%;
     position: fixed;
     padding: 0;
@@ -101,17 +101,15 @@ export default {
     }
   }
 
-  .footer{
+  .footer {
     position: relative;
-        height: 500px;
-        background: url(../../../public/ImgBg.png);
-        background-size: 100% 100%;       
-        z-index: -1;
-        margin-top: -150px;
-        padding-top: 150px;
-       
-    }
-
+    height: 500px;
+    background: url(../../../public/ImgBg.png);
+    background-size: 100% 100%;
+    z-index: -1;
+    margin-top: -150px;
+    padding-top: 150px;
+  }
 
   @media screen and (max-width: 992px) {
     .navbar {
@@ -134,23 +132,28 @@ export default {
   @media screen and (max-width: 575px) {
     .navbar {
       .logo {
-      width: 250px;
+        width: 250px;
 
-      img {
-        width: 80%;
+        img {
+          width: 80%;
+        }
       }
     }
+  }
+  @media screen and (max-width: 400px) {
+    .navbar {
+      .logo {
+        width: 220px;
+      }
     }
   }
+
   @media screen and (max-width: 375px) {
     .navbar {
       .logo {
-      width: 200px;
-
-
-    }
+        width: 200px;
+      }
     }
   }
-
 }
 </style>
