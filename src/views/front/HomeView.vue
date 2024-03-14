@@ -1,11 +1,18 @@
 <template>
   <div id="home">
+    <div class="fix-orange">
+      <img src="../../../public/ImgFixed.png">
+    </div>
+    <div class="fix-blueberry">
+      <img src="../../../public/ImgFixed02.png">
+    </div>
+
     <div class="banner">
       <div class="banner-img-bg d-none d-sm-block">
-        <img src="../../../public/ImgBanner.png" alt="" />
+        <img src="../../../public/ImgBanner.png" alt="Banner image" />
       </div>
       <div class="banner-img-sm d-sm-none">
-        <img src="../../../public/ImgBannerM.png" alt="" />
+        <img src="../../../public/ImgBannerM.png" alt="Banner image" />
       </div>
       <div class="banner-text">
         <h1>飲料、就是這麼好玩！</h1>
@@ -16,12 +23,6 @@
     </div>
     <main>
       <section class="customer">
-        <!-- <div class="customer-img-bg d-none d-sm-block">
-          <img src="../../../public/ImgFeatureBg.png" alt="" />
-        </div>
-        <div class="customer-img-sm d-sm-none">
-          <img src="../../../public/ImgFeatureBgM.png" alt="" />
-        </div> -->
         <div class="customer-main section-container">
           <h3>如果你是...</h3>
           <div class="customer-items">
@@ -81,10 +82,6 @@
       <!--end customer-->
 
       <section class="manufacture section-container">
-        <!-- <div class="manufacture-img">
-          <img src="../../../public/ImgBg.png" alt="背景圖" />
-        </div> -->
-
         <div class="main-drink">
           <img src="../../../public/ImgStepMain.png" alt="飲料" />
           <img src="../../../public/ImgStepMint.png" alt="葉子" />
@@ -269,6 +266,7 @@
               </div>
             </swiper-slide>
           </swiper>
+
           <div class="swiper-navigation">
             <div class="swiper-button-prev" ></div>
             <div class="swiper-button-next" ></div>
@@ -298,6 +296,7 @@
               </p>
             </div>
           </li>
+          
           <li>
             <div class="recommend-title">
               <img class="title-img" src="../../../public/people1.png" alt="" />
@@ -335,6 +334,9 @@
             </div>
           </li>
         </ul>
+        <!-- <div class="recommend-button">
+          <button type="button" class="btn btn-outline-danger">更多好評推薦</button>
+        </div>         -->
       </section>
     </main>
   </div>

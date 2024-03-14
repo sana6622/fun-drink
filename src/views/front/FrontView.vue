@@ -25,7 +25,7 @@
               <RouterLink to="/products">產品介紹</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink to="/DIYdrink">DIY調飲室</RouterLink>
+              <RouterLink to="/DIYdrink">DIY 調飲室</RouterLink>
             </li>
             <li class="nav-item d-none d-md-block">
               <RouterLink to="/cart">
@@ -45,20 +45,82 @@
     <RouterLink to="/admin/adminHome">進入後台首頁</RouterLink>
   </nav> -->
     <router-view></router-view>
-    <div class="footer">
-      <div>footerffooterfootefooterfooteooter</div>
+
+    <!-- <div class="footer section-container">
+      <div class="footer-area">
+        <div class="area-info">
+          <div class="info-img">
+            <img src="../../../public/logoSm.png" alt="logo" />
+          </div>
+          <ul>
+            <li><span>營業時間</span> <span>09:00 -20:00</span></li>
+            <li><span>地址</span> <span>台北市米花區五丁路39號1樓</span></li>
+            <li><span>聯絡我們</span> <span>(99)9999-9999</span></li>
+          </ul>
+          <div>
+            <i class="ri-facebook-circle-fill"></i>
+            <RiFacebookCircleFill size="24px" color="black" className="facebook-icon" />
+            <i class="ri-instagram-line"></i>
+            <RiInstagramLine size="24px" className="ig-icon" />
+          </div>
+        </div>
+        <ul class="area-meun">
+          <li>產品介紹</li>
+          <li>DIY調飲室</li>
+          <li>常見問題</li>
+        </ul>
+      </div>
+      <div class="footer-copyright">
+        <p>© Tania 2024</p>
+      </div>
+    </div> -->
+    <div class="footer section-container">
+      <div class="footer-area">
+        <div class="area-info">          
+          <ul>
+            <li><span>營業時間</span> <span>09:00 -20:00</span></li>
+            <li><span>地</span><span>址</span> <span>台北市米花區五丁路39號1樓</span></li>
+            <li><span>聯絡我們</span> <span>(99)9999-9999</span></li>
+          </ul>
+          <div class="icon">          
+            <RiFacebookCircleFill size="24px" color="black" className="facebook-icon" />         
+            <RiInstagramLine size="24px" className="ig-icon" />
+          </div>
+        </div>
+        <div class="area-img">
+            <img src="../../../public/logoSm.png" alt="logo" />
+          </div>
+        <ul class="area-meun">
+          <li>產品介紹</li>
+          <li>DIY調飲室</li>
+          <li>常見問題</li>
+        </ul>
+
+
+      </div>
+      <div class="footer-copyright">
+        <p>© Tania 2024</p>
+      </div>
     </div>
+
+
+
+
+
+    <!--end of footer-->
   </div>
 </template>
 
 <script>
-import { RiHeartFill } from '@remixicon/vue'
+import { RiFacebookCircleFill, RiHeartFill, RiInstagramLine } from '@remixicon/vue'
 import { RiShoppingCart2Line } from '@remixicon/vue'
 export default {
   components: {
     // HelloWorld
     RiHeartFill,
-    RiShoppingCart2Line
+    RiShoppingCart2Line,
+    RiFacebookCircleFill,
+    RiInstagramLine
   }
 }
 </script>
@@ -99,26 +161,11 @@ export default {
         width: 80%;
       }
     }
-  }
-
-  .footer {
-    position: relative;
-    height: 500px;
-    background: url(../../../public/ImgBg.png);
-    background-size: 100% 100%;
-    z-index: -1;
-    margin-top: -150px;
-    padding-top: 150px;
-  }
-
-  @media screen and (max-width: 992px) {
-    .navbar {
+    @media screen and (max-width: 992px) {
       padding: 10px 20px;
     }
-  }
 
-  @media screen and (max-width: 767px) {
-    .navbar {
+    @media screen and (max-width: 767px) {
       ul {
         display: block;
 
@@ -128,9 +175,7 @@ export default {
         }
       }
     }
-  }
-  @media screen and (max-width: 575px) {
-    .navbar {
+    @media screen and (max-width: 575px) {
       .logo {
         width: 250px;
 
@@ -139,20 +184,160 @@ export default {
         }
       }
     }
-  }
-  @media screen and (max-width: 400px) {
-    .navbar {
+    @media screen and (max-width: 400px) {
       .logo {
         width: 220px;
       }
     }
+
+    @media screen and (max-width: 375px) {
+      .navbar {
+        .logo {
+          width: 200px;
+        }
+      }
+    }
   }
 
-  @media screen and (max-width: 375px) {
-    .navbar {
-      .logo {
-        width: 200px;
+  .footer {
+    position: relative;
+    background: url(../../../public/ImgBg.png);
+    background-size: 100% 100%;
+    z-index: -1;
+    margin-top: -150px;
+    padding-top: 200px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 25px;   
+
+    // .footer-area {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   align-items: center;
+    //   .area-info {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     .info-img {
+    //       width: 125px;
+    //       margin-bottom: 30px;
+    //       img {
+    //         width: 100%;
+    //       }
+    //     }
+    //     ul {
+    //       margin-bottom: 30px;
+    //       li {
+    //         margin-bottom: 8px;
+    //       }
+    //     }
+    //   }
+    //   .area-meun{
+    //     line-height: 30px;
+        
+    //   }
+    // }
+    // .footer-copyright {
+    //   text-align: center;
+    //   color: gray;
+    // }
+    .footer-area {    
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      margin-top: 50px;
+      margin-bottom: 50px;
+      .area-info {   
+        ul {
+          margin-bottom: 10px;
+          li {
+            margin-bottom: 8px;            
+          }
+          li:nth-child(odd){             
+             :nth-child(1){    
+              padding-right: 8px;
+             }              
+            }
+            li:nth-child(2){                        
+             :nth-child(1){             
+              margin-right: 30px;             
+             }
+             :nth-child(2){             
+              margin-right: 8px;             
+             }              
+            }          
+        }
+        .facebook-icon{
+            margin-right: 20px;
+          }       
       }
+
+      .area-img {      
+          width: 160px;
+          margin-bottom: 30px;         
+          text-align: center;
+          position: absolute;
+          top: -100px;
+          left:48%;
+          img {
+            width: 100%;
+          }
+        }      
+
+      .area-meun{   
+        line-height: 30px;    
+      }
+    }
+    .footer-copyright {
+      text-align: center;
+      color: gray;    
+      font-size: 12px;  
+    }
+
+    @media screen and (max-width: 575px) {
+      background: url(../../../public/ImgBgM.png);     
+      
+      .footer-area{
+        flex-direction: column-reverse;
+        justify-self: start;
+        align-items: start;
+        padding-top: 0;
+        margin-top: 0;
+        .area-meun{
+          margin-bottom: 20px;
+        }
+        .area-img{          
+          position: relative;        
+          top: 0;
+          left: 0;
+          width: 125px;
+        }
+        .area-info{
+         .icon{
+          margin-top: 20px;
+         }
+          .facebook-icon{
+            margin-right: 20px;
+          }
+        }        
+      }
+    }
+
+  }
+  .section-container {
+    padding-right: 200px;
+    padding-left: 200px;
+
+    @media screen and (max-width: 1200px) {
+      padding-right: 120px;
+      padding-left: 120px;
+    }
+
+    @media screen and (max-width: 575px) {
+      padding-right: 20px;
+      padding-left: 20px;
     }
   }
 }
