@@ -51,9 +51,8 @@ export default {
   }
   .card{
     width: 50px;
-    height: 100px;
-  
-    outline:2px solid red;
+    height: 100px;  
+
   }
 }
 

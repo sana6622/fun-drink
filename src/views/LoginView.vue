@@ -1,8 +1,14 @@
 <template>
+  <div class="login">  
+
+  
   <div class="container">
     <div class="row justify-content-center">
-      <h1 class="h3 mt-5 mb-3 font-weight-normal text-center">請先登入</h1>
-      <div class="col-8">
+      <h1 class=" mt-5 mb-5 font-weight-normal text-center">請先登入</h1>
+      <div class="col-4 logo">
+         <img src="../../public/logoSm.png" alt="">         
+      </div> 
+      <div class="col-6">
         <form id="form" class="form-signin" @submit.prevent="login">
           <div class="form-floating mb-3">
             <input
@@ -16,7 +22,7 @@
             />
             <label for="username">Email address</label>
           </div>
-          <div class="form-floating">
+          <div class="form-floating mb-2">
             <input
               type="password"
               class="form-control"
@@ -27,14 +33,15 @@
             />
             <label for="password">Password</label>
           </div>
-          <button class="btn btn-lg btn-primary w-100 mt-3" type="submit">
+          <button class="btn btn-lg btn-primary w-100 mt-5" type="submit">
             登入
           </button>
         </form>
       </div>
-    </div>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021~∞ - 六角學院</p>
+
+    </div>   
   </div>
+</div> 
 </template>
 
 <script>
@@ -74,3 +81,25 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.login{
+  height: 100vh;
+  padding-top: 100px;  
+  background:url(../../public/ImgBgM.png);
+  background-size: 100% 100%;
+  .logo{
+    width: 300px;
+    margin-right: 20px;
+    img{
+      width: 100%;
+    }
+  }
+  
+  h1{
+    font-size: 40px;
+    font-weight: 600;
+  }
+  
+  
+}
+</style>
