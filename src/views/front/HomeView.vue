@@ -1,10 +1,10 @@
 <template>
   <div id="home">
     <div class="fix-orange">
-      <img src="../../../public/ImgFixed.png">
+      <img src="../../../public/ImgFixed.png" />
     </div>
     <div class="fix-blueberry">
-      <img src="../../../public/ImgFixed02.png">
+      <img src="../../../public/ImgFixed02.png" />
     </div>
 
     <div class="banner">
@@ -161,14 +161,14 @@
             :slidesPerView="1"
             :spaceBetween="10"
             :navigation="navigation"
-            :pagination="{        
-        clickable: true,
-      }"
+            :pagination="{
+              clickable: true
+            }"
             :breakpoints="breakpoints"
-            :modules="modules"           
+            :autoplay="{ display: 1000, disableOnInteraction: false }"
+            :modules="modules"
             class="mySwiper"
           >
-          <!-- :autoplay="{ display: 1000, disableOnInteraction: false }" -->
             <swiper-slide class="card">
               <div class="list-card">
                 <p class="card-tag-before"></p>
@@ -268,29 +268,39 @@
           </swiper>
 
           <div class="swiper-navigation">
-            <div class="swiper-button-prev" ></div>
-            <div class="swiper-button-next" ></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
-
         </div>
       </section>
       <!--end of products-->
+      
       <section class="recommend section-container">
         <h3>好評推薦</h3>
         <ul>
-          <li  v-for="item in recommends" :key="item.name">
+          <li v-for="item in recommends" :key="item.name">
             <div class="recommend-title">
-              <img class="title-img" :src="item.img"  alt="" />
-              <div class="title-star" >    
-                <img src="../../../public/grade.png" alt=""  v-for="(score,index) in item.score" :key="`${'score'+index}`"/>
-                <img src="../../../public/gradeGray.png" alt="" v-for="(score,index) in (5-item.score)" :key="index"/>          
+              <img class="title-img" :src="item.img" alt="" />
+              <div class="title-star">
+                <img
+                  src="../../../public/grade.png"
+                  alt=""
+                  v-for="(score, index) in item.score"
+                  :key="`${'score' + index}`"
+                />
+                <img
+                  src="../../../public/gradeGray.png"
+                  alt=""
+                  v-for="(score, index) in 5 - item.score"
+                  :key="index"
+                />
               </div>
             </div>
             <div class="recommend-info">
               <p>{{ item.name }}</p>
-              <p>{{ item.des }} </p>
+              <p>{{ item.des }}</p>
             </div>
-          </li>       
+          </li>
         </ul>
         <!-- <div class="recommend-button">
           <button type="button" class="btn btn-outline-danger">更多好評推薦</button>
@@ -311,9 +321,9 @@ import 'swiper/css/navigation' // Navigation module
 import 'swiper/css/pagination' // Pagination module
 
 import { Pagination, Navigation, Autoplay } from 'swiper'
-import people1 from'../../../public/people1.png'
-import people2 from'../../../public/people2.png'
-import people3 from'../../../public/people3.png'
+import people1 from '../../../public/people1.png'
+import people2 from '../../../public/people2.png'
+import people3 from '../../../public/people3.png'
 
 export default {
   components: {
@@ -336,31 +346,28 @@ export default {
         768: { slidesPerView: 2, spaceBetween: 10 },
         992: { slidesPerView: 2, spaceBetween: 10 },
         1200: { slidesPerView: 3, spaceBetween: 10 },
-        1400: { slidesPerView: 3, spaceBetween: 10 },
+        1400: { slidesPerView: 3, spaceBetween: 10 }
       },
-      recommends:[
+      recommends: [
         {
-          name:'王明明',
-          des:'這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！',
-          img:[people1],
-          score:5,
+          name: '王明明',
+          des: '這裡的自選調配真是太棒了！我能根據心情和口味來創造完美的飲品。每次的組合都讓我驚喜連連！',
+          img: [people1],
+          score: 5
         },
         {
-          name:'好奇寶寶',
-          des:'從未試過這麼多創新的飲品組合！每次來都有新驚喜，絕對是我的最愛之一！！',
-          img:[people3],
-          score:4,
+          name: '好奇寶寶',
+          des: '從未試過這麼多創新的飲品組合！每次來都有新驚喜，絕對是我的最愛之一！！',
+          img: [people3],
+          score: 4
         },
         {
-          name:'藍藍',
-          des:'對於喜愛嘗鮮的我來說，這裡就像天堂。每次的自選調配都能滿足我的好奇心。',
-          img:[people2],
-          score:5,
+          name: '藍藍',
+          des: '對於喜愛嘗鮮的我來說，這裡就像天堂。每次的自選調配都能滿足我的好奇心。',
+          img: [people2],
+          score: 5
         }
-
-      ],
-
-      
+      ]
     }
   }
 }
