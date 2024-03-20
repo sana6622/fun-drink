@@ -69,11 +69,16 @@
 
             //價格欄
             td:nth-child(4){   
-                div{     
+                div{    
                     p:nth-child(1){
+                        margin-top: 4px;                       
+                        margin-bottom: 4px;
+                    } 
+                    p:nth-child(2){
                         text-decoration: line-through;
                         color:gray;
                         font-size: 16px;
+                        
                     }
                 }                           
             }

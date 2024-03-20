@@ -65,6 +65,28 @@ export default {
       this.deleModal.hide()
     },
 
+    deleProduct() {     
+      this.$http
+        .delete(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/product/${this.id}`)
+        .then((res) => {
+          console.log('res',res)
+          this.deleModal.hide()         
+          this.$emit('delete')
+         
+          Swal.fire({
+            icon: 'success',
+            title: '已成功刪除'
+          })
+        })
+        .catch((error) => {
+          console.log('error', error)
+          Swal.fire({
+            icon: 'error',
+            title: '無法刪除'
+          })
+        })
+    },
+
   },
  
  

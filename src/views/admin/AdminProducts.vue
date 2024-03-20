@@ -26,12 +26,12 @@
             <td>
               <div v-if="product.price === product.origin_price">售價: {{ product.price }} 元</div>
               <div v-else>
-                <p>原價: {{ product.origin_price }} 元</p>
                 <p>售價: {{ product.price }} 元</p>
+                <p>原價: {{ product.origin_price }} 元</p>               
               </div>
             </td>
             <td>
-              <span class="text-success" v-if="product.is_enabled">上架中</span>
+              <span v-if="product.is_enabled">已上架</span>
               <span v-else>停售中</span>
             </td>
             <td>
@@ -49,7 +49,7 @@
                 <button
                   type="button"
                   class="btn btn-outline-danger btn-md"
-                  @click.prevent="deleModal(product.id,product.title)"
+                  @click.prevent="deleModal(product.id, product.title)"
                 >
                   刪除
                 </button>
@@ -60,17 +60,23 @@
       </table>
     </div>
 
-    <ProductModal :product="tempProduct" ref="productModal"></ProductModal>
-   
-    <DeleteProductModal  :id="deleteProductId" :title="deleteProductTitle" :deleProduct="deleProduct" ref="deleteModal"></DeleteProductModal>
+    <ProductModal
+      :product="tempProduct"
+      :isCreate="isCreate"
+      @product-change="getProducts"
+      ref="productModal"
+    ></ProductModal>
 
-   </div>
+    <DeleteProductModal
+      :id="deleteProductId"
+      :title="deleteProductTitle"
+      @delete="getProducts"
+      ref="deleteModal"
+    ></DeleteProductModal>
+  </div>
 </template>
 
 <script>
-// const { VITE_URL } = import.meta.env
-// const { VITE_NAME } = import.meta.env
-
 import ProductModal from '@/components/ProductModal.vue'
 import DeleteProductModal from '@/components/DeleteProductModal.vue'
 import Swal from 'sweetalert2'
@@ -90,23 +96,30 @@ export default {
       addToCartLoading: '',
       cartChangeLoading: '',
       carts: {},
-      deleteProductId:'',
-      deleteProductTitle:'',
- 
-     
+      deleteProductId: '',
+      deleteProductTitle: '',
+      isCreate: false
     }
   },
 
   mounted() {
+    //取得token
+    const token = document.cookie.replace(
+      /(?:(?:^|.*;\s*)hexschoolToken\s*=\s*([^;]*).*$)|^.*$/,
+      '$1'
+    )
+    this.$http.defaults.headers.common['Authorization'] = token
     this.getProducts()
   },
 
   methods: {
-    getProducts() {
+    getProducts() {   
+       
       this.$http
-        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products/all`)
+        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/products/all`)
         .then((res) => {
           this.products = res.data.products
+          console.log('get', res.data.products)
         })
         .catch((error) => {
           console.log('error', error)
@@ -116,36 +129,21 @@ export default {
       this.tempProduct = {}
       this.$refs.productModal.showModal()
       this.tempProduct = product
+      console.log('status', status)
+      if (status === 'create') {
+        this.isCreate = true
+      } else {
+        this.isCreate = false
+      }
     },
 
-    deleModal(id,title) {     
+    deleModal(id, title) {
       this.deleteProductId = id
-      this.deleteProductTitle = title     
-      this.$refs.deleteModal.showModal() 
-      this.getProducts() ;  
+      this.deleteProductTitle = title
+      this.$refs.deleteModal.showModal()
+      this.getProducts()
     },
-
-    deleProduct(id) {     
-      this.$http
-        .delete(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/product/${id}`)
-        .then((res) => {
-          this.$refs.deleteModal.hideModal() 
-          this.getProducts();
-          Swal.fire({
-            icon: 'success',
-            title: '已成功刪除'
-          })
-        })
-        .catch((error) => {
-          console.log('error', error)
-          Swal.fire({
-            icon: 'error',
-            title: '無法刪除'
-          })
-        })
-    }
-
-
+ 
   }
 }
 </script>
