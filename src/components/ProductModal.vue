@@ -65,7 +65,8 @@
                     <option
                       :value="item.value"
                       v-for="(item, index) in filterOption"
-                      :key="`${'option' + index}`"
+                      :key="`option-${index}`"
+                     
                     >
                       {{ item.text }}
                     </option>
@@ -139,7 +140,7 @@
             <div class="mb-5 mt-5">
               <h6 class="mb-4 fs-4">產品描述</h6>
               <div v-for="(item, index) in des" :key="`des-${index}`" class="row mb-2">
-                <div class="col-11">
+                <div class="col-10 col-sm-11">
                   <input
                     id="des"
                     type="text"
@@ -149,7 +150,7 @@
                   />
                 </div>
 
-                <div class="col-1">
+                <div class="col-2 col-sm-1 mr-1">
                   <button
                     type="button"
                     class="btn btn-danger text-end"
@@ -167,8 +168,8 @@
             </div>
 
             <div v-if="selected == 1">
-              <div class="row mb-2">
-                <h6 class="fs-4 mb-3">內容</h6>
+              <h6 class="fs-4 mb-3">內容</h6>
+              <div class="row mb-2 d-none d-sm-flex">                
                 <div class="col-1 fs-5"></div>
                 <div class="col-3 fs-5">成分</div>
                 <div class="col-3 fs-5">分類</div>
@@ -176,51 +177,68 @@
                 <div class="col-2 fs-5">數量</div>
               </div>
               <div class="row mb-2" v-for="(item, index) in contents" :key="`content-${index}`">
-                <div class="col-1 fs-5 text-center pt-2">{{ index + 1 }}</div>
-                <div class="col-3">
+                <div class="col-12  col-sm-1 fs-5 d-flex justify-content-between d-sm-block  mb-2">
+                  <p class="text-center pt-2">
+                    {{ index + 1 }}.
+                  </p>              
+
+                  <button
+                    type="button"
+                    class="btn btn-danger d-sm-none"
+                    @click="remove('contents', index)"
+                  >
+                    -
+                  </button>
+
+                </div>
+                <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block mb-2" >
+                  <label class="w-25 d-sm-none text-center me-2 fs-5">成分:</label>
                   <input
                     id="goods"
                     type="text"
-                    class="form-control col-2"
+                    class="form-control "
                     placeholder="請輸入成分"
                     v-model="item.goods"
                   />
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block  mb-2" >
+                  <label class="w-25 d-sm-none text-center me-2 fs-5">分類:</label>
                   <select class="form-select" aria-label="Select sub-categoty" v-model="item.type">
                     <option
                       :value="typeItem.value"
                       v-for="(typeItem, index) in contentTypeOption"
-                      :key="`${'contentType' + index}`"
+                      :key="`contentType-${index}`"                     
                     >
                       {{ typeItem.text }}
                     </option>
                   </select>
                 </div>
-                <div class="col-2">
+                <div class=" col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block  mb-2">
+                  <label class="w-25 d-sm-none text-center me-2 fs-5">單位:</label>
                   <select class="form-select" aria-label="Select unit" v-model="item.unit">
                     <option
                       :value="unitItem.value"
                       v-for="(unitItem, unitIndex) in contentUnitOption"
-                      :key="`${'contentUnit' + unitIndex}`"
+                      :key="`contentUnit-${unitIndex}`"                       
                     >
                       {{ unitItem.value }}
                     </option>
                   </select>
                 </div>
-                <div class="col-2">
+                <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block  mb-2" >
+                  <label class="w-25 d-sm-none text-center me-2 fs-5">數量:</label>
                   <input
-                    id="goods"
+                    id="count"
                     type="text"
-                    class="form-control col-2"
+                    class="form-control "
                     placeholder="請輸入數量"
                     v-model="item.count"
                   />
                 </div>
-                <div class="col-1">
+                <div class="col-12 col-sm-1  mb-2">
                   <button
                     type="button"
-                    class="btn btn-danger text-end"
+                    class="btn btn-danger d-none d-sm-block"
                     @click="remove('contents', index)"
                   >
                     -

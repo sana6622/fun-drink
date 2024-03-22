@@ -1,9 +1,20 @@
 <template>
   <div id="AdminProduct">
-    <h2>後台商品頁面 (待處理)</h2>
     <div class="text-end mt-4">
       <button class="btn btn-primary" @click="openModal('create')">建立新的產品</button>
     </div>
+    <div class="select-area">
+      <p>篩選類別</p>
+      <select class="form-select" aria-label="Select sub-categoty" v-model="selectedCagetory">
+        <option :value="item" v-for="(item, index) in categoryOption" :key="`category-${index}`">
+          {{ item }}
+        </option>
+      </select>
+      <button class="btn btn-outline-primary" @click="filterCategory(selectedCagetory)">
+        確定
+      </button>
+    </div>
+
     <div class="table-product">
       <table class="table table-hover">
         <thead>
@@ -17,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="product in products" :key="product.id">
+          <tr v-for="product in filterProducts" :key="product.id">
             <td>
               <img :src="product.imageUrl" />
             </td>
@@ -27,18 +38,20 @@
               <div v-if="product.price === product.origin_price">售價: {{ product.price }} 元</div>
               <div v-else>
                 <p>售價: {{ product.price }} 元</p>
-                <p>原價: {{ product.origin_price }} 元</p>               
+                <p>原價: {{ product.origin_price }} 元</p>
               </div>
             </td>
             <td>
-              <span v-if="product.is_enabled">已上架</span>
-              <span v-else>停售中</span>
+              <span class="d-none d-sm-block" v-if="product.is_enabled">已上架</span>
+              <span class="d-none d-sm-block" v-else>停售中</span>
+              <span class="d-block d-sm-none" v-if="product.is_enabled">V</span>
+              <span class="d-block d-sm-none" v-else>X</span>
             </td>
             <td>
               <div class="btn-group">
                 <button
                   type="button"
-                  class="btn btn-outline-primary btn-md"
+                  class="btn btn-outline-primary btn-sm"
                   data-bs-toggle="modal"
                   data-bs-target="#openModal"
                   @click.prevent="openModal('edit', product)"
@@ -48,7 +61,7 @@
 
                 <button
                   type="button"
-                  class="btn btn-outline-danger btn-md"
+                  class="btn btn-outline-danger btn-sm"
                   @click.prevent="deleModal(product.id, product.title)"
                 >
                   刪除
@@ -92,13 +105,28 @@ export default {
       VITE_URL: import.meta.env.VITE_URL,
       VITE_NAME: import.meta.env.VITE_NAME,
       products: [],
+      filterProducts: [],
       tempProduct: {},
       addToCartLoading: '',
       cartChangeLoading: '',
       carts: {},
       deleteProductId: '',
       deleteProductTitle: '',
-      isCreate: false
+      isCreate: false,
+      categoryOption: [
+        '所有類別',
+        '熱門飲品',
+        '創意飲品',
+        '茶類',
+        '果汁',
+        '其他基底',
+        '口感配料',
+        '水果類',
+        '香料與草本',
+        '其他配料',
+        '糖類'
+      ],
+      selectedCagetory: '所有類別'
     }
   },
 
@@ -113,13 +141,14 @@ export default {
   },
 
   methods: {
-    getProducts() {   
-       
+    getProducts() {
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/products/all`)
         .then((res) => {
-          this.products = res.data.products
-          console.log('get', res.data.products)
+          // this.products = res.data.products
+          this.products = Object.values(res.data.products)
+          this.filterProducts = this.products
+          console.log('get', Object.values(res.data.products))
         })
         .catch((error) => {
           console.log('error', error)
@@ -128,8 +157,7 @@ export default {
     openModal(status, product) {
       this.tempProduct = {}
       this.$refs.productModal.showModal()
-      this.tempProduct = product
-      console.log('status', status)
+      this.tempProduct = product     
       if (status === 'create') {
         this.isCreate = true
       } else {
@@ -143,7 +171,14 @@ export default {
       this.$refs.deleteModal.showModal()
       this.getProducts()
     },
- 
+
+    filterCategory(category) {
+      if (category === '所有類別') {
+        this.filterProducts = this.products
+      } else {
+        this.filterProducts = this.products.filter((item) => item.category === category)
+      }
+    }
   }
 }
 </script>

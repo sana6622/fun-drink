@@ -1,5 +1,4 @@
-#AdminProduct{
-    
+#AdminProduct{   
    
     font-family: 'Noto Sans TC', sans-serif;
     padding-right: 200px;
@@ -17,6 +16,39 @@
     @media screen and (max-width: 575px) {
         padding-right: 20px;
         padding-left: 20px;
+    }
+    .select-area{        
+        display: flex;
+        justify-content: start;
+        align-items:center;
+        width: 50%;
+        p{
+            font-size: 20px;
+            
+            
+        }
+        select{
+            flex:1;
+            // width: 25%;
+            margin: 12px 12px;
+            
+        }
+        @media screen and (max-width: 767px) {
+            width: 100%;          
+        }
+        @media screen and (max-width: 575px) {
+            p{
+                font-size: 12px;  
+            }
+            select{
+                font-size: 12px;
+            }
+            button{
+                font-size: 12px;
+            }
+                 
+        }
+
     }
     .table-product{     
         font-size: 18px;
@@ -97,8 +129,8 @@
                     font-weight: 500;
                 }
                 td:nth-child(4){   
-                    div{     
-                        p:nth-child(1){
+                    div{   
+                        p:nth-child(1),p:nth-child(2){
                             font-size: 12px;
                         }
                     }                           
@@ -116,15 +148,50 @@
                 th:nth-child(1){              
                     display: none;
                 }
+               
+    
+
                 td:nth-child(1){             
                     display: none;              
                 }
                 td:nth-child(4){   
                     div{     
-                        p:nth-child(1){
+                        p:nth-child(2){
                             display:none;
                         }
                     }                           
+                }
+                // th:nth-child(5){             
+                //     width: 15%;
+                //     background-color: green;                               
+                //  }
+                td:nth-child(2){             
+                    width: 40%;                                              
+                 }
+
+                td:nth-child(3),td:nth-child(4),td:nth-child(5){             
+                    width: 20%;                                               
+                 }
+               
+                td:nth-child(6){             
+                    width: 10%;                                                   
+                 }
+               
+                .btn-group{
+                    flex-direction: column;
+                 
+
+                    
+                    button{
+                       
+                        padding-right: 0;
+                        padding-left: 0;
+                       
+
+                        
+                        
+                    }
+                    
                 }
             }
 
