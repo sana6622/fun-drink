@@ -65,12 +65,11 @@
                     <option
                       :value="item.value"
                       v-for="(item, index) in filterOption"
-                      :key="`option-${index}`"
-                     
-                    >
+                      :key="`option-${index}`"                     
+                    >                 
                       {{ item.text }}
                     </option>
-                  </select>
+                  </select>              
                 </div>
 
                 <div class="mb-3 col-md-4">
@@ -347,6 +346,7 @@ export default {
 
   watch: {
     product() {
+      this.resetData()
       this.tempProduct = this.product
       const propSelect = this.categoryOption.find((item) => item.text === this.tempProduct.category)
       if (propSelect) {
@@ -408,6 +408,7 @@ export default {
     },
 
     submitProduct() {
+      console.log('this.selectedItem',this.selectedItem)
       const desArray = this.des.map((item) => item.value)
       const datas = {
         ...this.tempProduct,
@@ -416,6 +417,9 @@ export default {
         content: this.contents,
         description: [{ des: desArray }, { tag: this.tag }, { sell: this.sell }]
       }
+      console.log('datas',datas)
+      console.log('this.selectedItem',this.selectedItem)
+      console.log('this.categoryOption[this.selectedItem].text',this.categoryOption[this.selectedItem].text)
       let api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`
 
       if (this.isCreate) {
@@ -466,12 +470,14 @@ export default {
   },
   computed: {
     filterOption() {
+      //如果是選擇飲料，次分類值>1時(不是飲料的選項)， 預設值改為0
       if (this.selected == 1) {
-        if (this.selectedItem >= 1) {
+        if (this.selectedItem > 1) {
           this.selectedItem = 0
         }
         return this.categoryOption.filter((item) => item.type === 'drink')
       } else {
+        //如果是選擇食材，次分類值<1時(不是食材的選項)， 預設值改為2
         if (this.selectedItem <= 1) {
           this.selectedItem = 2
         }

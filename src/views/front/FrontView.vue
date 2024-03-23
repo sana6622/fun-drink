@@ -4,8 +4,7 @@
       <div class="container-fluid">
         <RouterLink to="/">
           <div class="logo">
-            <img src="../../../public/logoBig.png" alt="logo" />
-            <!-- <img src="../../../public/logoSm.png" alt="logo-sm" class="d-block d-sm-none" /> -->
+            <img src="../../../public/logoBig.png" alt="logo" />           
           </div>
         </RouterLink>
         <button
@@ -16,10 +15,11 @@
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          @click="clickNavBtn"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse " ref="navRef" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
               <RouterLink to="/products">產品介紹</RouterLink>
@@ -39,11 +39,6 @@
         </div>
       </div>
     </nav>
-    <!-- <nav>   
-    <RouterLink to="/products">產品列表</RouterLink> | <RouterLink to="/cart">購物車</RouterLink> |
-    <RouterLink to="/login">登入</RouterLink> |
-    <RouterLink to="/admin/adminHome">進入後台首頁</RouterLink>
-  </nav> -->
     <router-view></router-view>
 
     <div class="footer">
@@ -84,13 +79,27 @@
 <script>
 import { RiFacebookCircleFill, RiHeartFill, RiInstagramLine } from '@remixicon/vue'
 import { RiShoppingCart2Line } from '@remixicon/vue'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default {
   components: {
     RiHeartFill,
     RiShoppingCart2Line,
     RiFacebookCircleFill,
     RiInstagramLine
-  }
+  }, 
+
+  
+  methods: {
+    //突然出現navbar無法收闔下拉區塊問題，可能是bootstarp更版造成，暫時使用這個方式處理
+    clickNavBtn(){  
+      console.log('111')      
+      if(this.$refs.navRef.classList.contains('d-none')){
+        this.$refs.navRef.classList.remove('d-none')
+      }else{
+        this.$refs.navRef.classList.add('d-none')
+      }     
+    }
+  },
 }
 </script>
 

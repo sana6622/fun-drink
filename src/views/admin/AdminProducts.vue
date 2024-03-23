@@ -1,7 +1,8 @@
 <template>
   <div id="AdminProduct">
+    <h1>產品列表</h1>
     <div class="text-end mt-4">
-      <button class="btn btn-primary" @click="openModal('create')">建立新的產品</button>
+      <button class="btn btn-primary" @click="openModal('create', {})">建立新的產品</button>
     </div>
     <div class="select-area">
       <p>篩選類別</p>
@@ -10,9 +11,7 @@
           {{ item }}
         </option>
       </select>
-      <button class="btn btn-outline-primary" @click="filterCategory(selectedCagetory)">
-        確定
-      </button>
+      <button class="btn btn-outline-primary" @click="getProducts">確定</button>
     </div>
 
     <div class="table-product">
@@ -28,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="product in filterProducts" :key="product.id">
+          <tr v-for="product in products" :key="product.id">
             <td>
               <img :src="product.imageUrl" />
             </td>
@@ -73,6 +72,19 @@
       </table>
     </div>
 
+    <nav aria-label="Page navigation example ">
+      <ul class="pagination justify-content-end my-5">
+        <li
+          class="page-item"
+          v-for="page in totalPage"
+          :key="`page-${page}`"
+          @click="clickPage(page)"
+        >
+          <a class="page-link">{{ page }}</a>
+        </li>
+      </ul>
+    </nav>
+
     <ProductModal
       :product="tempProduct"
       :isCreate="isCreate"
@@ -93,6 +105,7 @@
 import ProductModal from '@/components/ProductModal.vue'
 import DeleteProductModal from '@/components/DeleteProductModal.vue'
 import Swal from 'sweetalert2'
+import { watch } from 'vue'
 
 export default {
   components: {
@@ -126,7 +139,9 @@ export default {
         '其他配料',
         '糖類'
       ],
-      selectedCagetory: '所有類別'
+      selectedCagetory: '所有類別',
+      pagination: 1,
+      totalPage: 1
     }
   },
 
@@ -142,27 +157,43 @@ export default {
 
   methods: {
     getProducts() {
-      this.$http
-        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/products/all`)
-        .then((res) => {
-          // this.products = res.data.products
-          this.products = Object.values(res.data.products)
-          this.filterProducts = this.products
-          console.log('get', Object.values(res.data.products))
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
+      if (this.selectedCagetory === '所有類別') {
+        this.$http
+          .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.pagination}`)
+          .then((res) => {
+            console.log('res data', res.data)
+            this.totalPage = res.data.pagination.total_pages
+            this.products = Object.values(res.data.products)
+            console.log('product all', this.pagination, this.products)
+          })
+          .catch((error) => {
+            console.log('error', error)
+          })
+      } else {
+        this.$http
+          .get(
+            `${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.page}&category=${this.selectedCagetory}`
+          )
+          .then((res) => {
+            this.products = Object.values(res.data.products)
+            this.totalPage = res.data.pagination.total_pages
+            console.log('res data', res.data)
+            console.log('product', this.selectedCagetory, this.pagination, this.products)
+          })
+          .catch((error) => {
+            console.log('error', error)
+          })
+      }
     },
     openModal(status, product) {
-      this.tempProduct = {}
-      this.$refs.productModal.showModal()
-      this.tempProduct = product     
       if (status === 'create') {
         this.isCreate = true
       } else {
         this.isCreate = false
       }
+      this.tempProduct = {}
+      this.$refs.productModal.showModal()
+      this.tempProduct = product
     },
 
     deleModal(id, title) {
@@ -171,13 +202,24 @@ export default {
       this.$refs.deleteModal.showModal()
       this.getProducts()
     },
+    clickPage(page) {
+      console.log('click page', page)
+      this.pagination = page
+    }
 
-    filterCategory(category) {
-      if (category === '所有類別') {
-        this.filterProducts = this.products
-      } else {
-        this.filterProducts = this.products.filter((item) => item.category === category)
-      }
+    // filterCategory(category) {
+    //   if (category === '所有類別') {
+    //     this.filterProducts = this.products
+    //   } else {
+    //     this.filterProducts = this.products.filter((item) => item.category === category)
+    //   }
+
+    // }
+  },
+  watch: {
+    pagination() {
+      console.log('change page')
+      this.getProducts()
     }
   }
 }
