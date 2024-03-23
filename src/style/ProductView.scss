@@ -181,6 +181,10 @@
     }
 
     .products {
+
+
+        flex: 1;
+
         h2 {
             font-size: 26px;
             font-weight: 700;
@@ -191,17 +195,15 @@
             text-shadow: rgb(226, 185, 138) 0.1em 0.1em 0.2em
         }
 
-        ul {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 8px;
+        ul {           
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
             .card {
                 width: 300px;
             }
+
 
             .list-card {
                 width: 100%;
@@ -238,6 +240,7 @@
                 .card-img {
                     width: 100%;
                     z-index: 1;
+
                     img {
                         width: 100%;
                     }
@@ -339,6 +342,7 @@
             }
         }
     }
+
 
 
     .btn-outline-danger {

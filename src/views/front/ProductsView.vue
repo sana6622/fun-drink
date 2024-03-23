@@ -6,17 +6,17 @@
           <p class="nav-title">飲品</p>
           <ul class="nav-list">
             <li v-for="(list, index) in drinkMenu" :key="index" class="list-li">
-              <p @click.prevent="click(list.title)">{{ list.title }}</p>
+              <p @click.prevent="clickMenu(list.title)">{{ list.title }}</p>
             </li>
           </ul>
         </li>
         <li class="nav-ingredient" @click.prevent="clickNav('ingredientsMenu')">
-          <p class="nav-title">配料</p>
+          <p class="nav-title">各式配料</p>
           <ul class="nav-list">
             <li v-for="(list, index) in ingredientsMenu" :key="`${'list'+index}`" class="list-li">
-              <p>{{ list.title }}</p>
+              <p @click.prevent="clickMenu(list.title)">{{ list.title }}</p>
               <ul class="list-item">
-                <li v-for="(item, itemIndex) in list.subTitle" :key="`${'item'+itemIndex}`" @click.prevent="click(item)">{{ item }}</li>
+                <li v-for="(item, itemIndex) in list.subTitle" :key="`${'item'+itemIndex}`" @click.prevent="clickMenu(item)">{{ item }}</li>
               </ul>
             </li>
           </ul>
@@ -31,33 +31,38 @@
 
       <ul class="menu">
         <li v-for="(menu, index) in menu" :key="index" class="menu-li">
-          <p  @click.prevent="click(menu.title)">{{ menu.title }}</p>
+          <p  @click.prevent="clickMenu(menu.title)">{{ menu.title }}</p>
           <ul v-if="menu.subTitle" class="menu-subtitle">
-            <li v-for="(item, itemIndex) in menu.subTitle" :key="`${'menu'+itemIndex}`" @click.prevent="click(item)">{{ item }}</li>
+            <li v-for="(item, itemIndex) in menu.subTitle" :key="`${'menu'+itemIndex}`" @click.prevent="clickMenu(item)">{{ item }}</li>
           </ul>
         </li>
-      </ul>
+      </ul>   
 
       <div class="products">
-        <h2>{{ productTitle }}</h2>
+        <h2>{{ productCategory }}</h2>
         <ul>
-          <li class="card">
+          <li class="card" v-for="(item, index) in products" :key="`product-${index}`">
             <div class="list-card">
-              <p class="card-tag-before"></p>
-              <p class="card-tag">最佳創意</p>
-              <p class="card-tag-"></p>
+              <p class="card-tag-before" v-show="item.description[1].tag!=''"></p>
+              <p class="card-tag" v-show="item.description[1].tag !=''">{{ item.description[1].tag }}</p>
+              <!-- <p class="card-tag-"></p> -->
               <div class="card-img">
-                <img src="../../../public/imgDrink.png" alt="" />
+                <img :src="item.imageUrl" alt="飲料圖片" />
               </div>
 
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">
-                結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-              </p>
+              <h6>{{ item.title }}</h6>
+              <div class="card-des">
+                  <p
+                    v-for="(des, desIndex) in item.description[0].des"
+                    :key="`product-${desIndex}`"
+                  >
+                    {{ des }}
+                  </p>
+                </div>
               <p class="card-more">查看詳情</p>
               <div class="card-price">
-                <span>優惠價 $65</span>
-                <span>原價 $75</span>
+                <span>優惠價 ${{ item.price }}</span>
+                <span>原價 ${{ item.origin_price }}</span>
               </div>
               <div class="card-btn">
                 <button type="button" class="btn btn-outline-danger">加入調飲室</button>
@@ -65,78 +70,7 @@
               </div>
             </div>
           </li>
-          <li class="card">
-            <div class="list-card">
-              <p class="card-tag-before"></p>
-              <p class="card-tag">最佳創意</p>
-              <p class="card-tag-"></p>
-              <div class="card-img">
-                <img src="../../../public/imgDrink.png" alt="" />
-              </div>
 
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">
-                結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-              </p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>
-                <span>原價 $75</span>
-              </div>
-              <div class="card-btn">
-                <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                <button type="button" class="btn btn-danger">加入購物車</button>
-              </div>
-            </div>
-          </li>
-          <li class="card">
-            <div class="list-card">
-              <p class="card-tag-before"></p>
-              <p class="card-tag">最佳創意</p>
-              <p class="card-tag-"></p>
-              <div class="card-img">
-                <img src="../../../public/imgDrink.png" alt="" />
-              </div>
-
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">
-                結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-              </p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>
-                <span>原價 $75</span>
-              </div>
-              <div class="card-btn">
-                <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                <button type="button" class="btn btn-danger">加入購物車</button>
-              </div>
-            </div>
-          </li>
-          <li class="card">
-            <div class="list-card">
-              <p class="card-tag-before"></p>
-              <p class="card-tag">最佳創意</p>
-              <p class="card-tag-"></p>
-              <div class="card-img">
-                <img src="../../../public/imgDrink.png" alt="" />
-              </div>
-
-              <h6>珍珠鮮奶茶</h6>
-              <p class="card-des">
-                結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-              </p>
-              <p class="card-more">查看詳情</p>
-              <div class="card-price">
-                <span>優惠價 $65</span>
-                <span>原價 $75</span>
-              </div>
-              <div class="card-btn">
-                <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                <button type="button" class="btn btn-danger">加入購物車</button>
-              </div>
-            </div>
-          </li>
         </ul>
       </div>
     </main>
@@ -148,20 +82,38 @@ export default {
   components: {},
   data() {
     return {
+      VITE_URL: import.meta.env.VITE_URL,
+      VITE_NAME: import.meta.env.VITE_NAME,
       menu: {},
-      drinkMenu: [{ title: '熱門飲料' }, { title: '創意飲品' }],
+      drinkMenu: [{ title: '熱門飲品' }, { title: '創意飲品' }],
       ingredientsMenu: [
-        { title: '基底飲品', subTitle: ['茶類', '果汁', '酒類', '其他'] },
-        { title: '配料', subTitle: ['口感配料', '水果配料', '香草與草本', '其他配料'] },
-        { title: '糖類' }
+        { title: '基底飲品', subTitle: ['茶類', '果汁', '其他基底'] },
+        { title: '配料', subTitle: ['口感配料', '水果類', '香料與草本', '其他配料'] },
+        { title: '糖類',subTitle: ['糖類'] }
       ],
-      productTitle:'熱門飲品'
+      productCategory:'熱門飲品',
+      products:[],
     }
   },
   mounted() {
     this.menu = this.ingredientsMenu
+    this.getProducts(this.productCategory)
   },
   methods: {
+    getProducts(category) {
+      console.log('category get', category)
+      this.$http
+        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
+        .then((res) => {
+          const data = Object.values(res.data.products)       
+          const datas =[...this.products,...data]       
+          this.products = datas          
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    },
+
     clickNav(menu) {      
       if (menu == 'drinkMenu') {
         this.menu = this.drinkMenu
@@ -170,10 +122,25 @@ export default {
       }
     },
 
-    click(item){
-      console.log('click',item)
-      this.productTitle = item
-
+    clickMenu(item){     
+      this.productCategory = item
+      //如果是點選基底飲品(大項目) = 茶類+果汁+其他基底
+      //如果是點配料 = 口感配料+水果+香料+其他
+      const itemIndex = this.ingredientsMenu.findIndex(el=>el.title===item)     
+    
+      if(itemIndex === -1){
+        //點擊子項目
+        this.products=[]
+        this.getProducts(item)       
+      }else{
+        //點擊大項目
+      this.products=[]
+      this.ingredientsMenu[itemIndex].subTitle.forEach(category=>{        
+      this.getProducts(category)
+      })
+      
+        
+      }
     }
   }
 }

@@ -821,8 +821,12 @@
 
             }
         }
+        .card{
+            min-width: 300px;           
+        }
 
         .list-card {
+            
             background-color: #fff;
             flex: 1;
             padding: 15px 18px;

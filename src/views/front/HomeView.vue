@@ -152,9 +152,9 @@
 
       <section class="products section-container">
         <ul class="products-title">
-          <li>創意飲品</li>
-          <li>熱門飲料</li>
-          <li>熱門配料</li>
+          <li @click="clickCategory('熱門飲品')">熱門飲品</li>
+          <li @click="clickCategory('創意飲品')">創意飲品</li>
+          <li @click="clickCategory('熱門配料')">熱門配料</li>
         </ul>
         <div class="products-swiper">
           <swiper
@@ -169,95 +169,26 @@
             :modules="modules"
             class="mySwiper"
           >
-            <swiper-slide class="card">
+            <swiper-slide class="card" v-for="(item, index) in products" :key="`product-${index}`">
               <div class="list-card">
                 <p class="card-tag-before"></p>
-                <p class="card-tag">最佳創意</p>
-                <p class="card-tag-"></p>
+                <p class="card-tag">{{ item.description[1].tag }}</p>
                 <div class="card-img">
-                  <img src="../../../public/imgDrink.png" alt="" />
+                  <img :src="item.imageUrl" alt="飲料圖片" />
                 </div>
-
-                <h6>珍珠鮮奶茶</h6>
-                <p class="card-des">
-                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-                </p>
+                <h6>{{ item.title }}</h6>
+                <div class="card-des">
+                  <p
+                    v-for="(des, desIndex) in item.description[0].des"
+                    :key="`product-${desIndex}`"
+                  >
+                    {{ des }}
+                  </p>
+                </div>
                 <p class="card-more">查看詳情</p>
                 <div class="card-price">
-                  <span>優惠價 $65</span>
-                  <span>原價 $75</span>
-                </div>
-                <div class="card-btn">
-                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                  <button type="button" class="btn btn-danger">加入購物車</button>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide class="card">
-              <div class="list-card">
-                <p class="card-tag-before"></p>
-                <p class="card-tag">最佳創意</p>
-                <p class="card-tag-"></p>
-                <div class="card-img">
-                  <img src="../../../public/imgDrink.png" alt="" />
-                </div>
-
-                <h6>珍珠鮮奶茶</h6>
-                <p class="card-des">
-                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-                </p>
-                <p class="card-more">查看詳情</p>
-                <div class="card-price">
-                  <span>優惠價 $65</span>
-                  <span>原價 $75</span>
-                </div>
-                <div class="card-btn">
-                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                  <button type="button" class="btn btn-danger">加入購物車</button>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide class="card">
-              <div class="list-card">
-                <p class="card-tag-before"></p>
-                <p class="card-tag">最佳創意</p>
-                <p class="card-tag-"></p>
-                <div class="card-img">
-                  <img src="../../../public/imgDrink.png" alt="" />
-                </div>
-
-                <h6>珍珠鮮奶茶</h6>
-                <p class="card-des">
-                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-                </p>
-                <p class="card-more">查看詳情</p>
-                <div class="card-price">
-                  <span>優惠價 $65</span>
-                  <span>原價 $75</span>
-                </div>
-                <div class="card-btn">
-                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                  <button type="button" class="btn btn-danger">加入購物車</button>
-                </div>
-              </div>
-            </swiper-slide>
-            <swiper-slide class="card">
-              <div class="list-card">
-                <p class="card-tag-before"></p>
-                <p class="card-tag">最佳創意</p>
-                <p class="card-tag-"></p>
-                <div class="card-img">
-                  <img src="../../../public/imgDrink.png" alt="" />
-                </div>
-
-                <h6>珍珠鮮奶茶</h6>
-                <p class="card-des">
-                  結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。結合了傳統奶茶和楓糖的溫馨味道，適合秋冬季節品嚐。
-                </p>
-                <p class="card-more">查看詳情</p>
-                <div class="card-price">
-                  <span>優惠價 $65</span>
-                  <span>原價 $75</span>
+                  <span>優惠價 ${{ item.price }}</span>
+                  <span>原價 ${{ item.origin_price }}</span>
                 </div>
                 <div class="card-btn">
                   <button type="button" class="btn btn-outline-danger">加入調飲室</button>
@@ -274,7 +205,7 @@
         </div>
       </section>
       <!--end of products-->
-      
+
       <section class="recommend section-container">
         <h3>好評推薦</h3>
         <ul>
@@ -334,6 +265,8 @@ export default {
   },
   data() {
     return {
+      VITE_URL: import.meta.env.VITE_URL,
+      VITE_NAME: import.meta.env.VITE_NAME,
       modules: [Navigation, Pagination, Autoplay],
       navigation: {
         nextEl: '.swiper-button-next',
@@ -367,7 +300,35 @@ export default {
           img: [people2],
           score: 5
         }
-      ]
+      ],
+      // category:'熱門飲品',
+      products: []
+    }
+  },
+  mounted() {
+    this.getProducts('熱門飲品')
+  },
+  methods: {
+    getProducts(category) {
+      console.log('category get', category)
+      this.$http
+        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
+        .then((res) => {
+          const data = Object.values(res.data.products)
+          this.products = data
+            .sort((a, b) => b.description[2].sell - a.description[2].sell)
+            .slice(0, 6)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    },
+    clickCategory(category) {
+      if (category === '熱門配料') {
+        this.getProducts('口感配料')
+      } else {
+        this.getProducts(category)
+      }
     }
   }
 }

@@ -110,8 +110,7 @@ export default {
     padding: 0;
     background-color: #fee69c;
     padding: 12px 120px;
-    z-index: 99;
-    outline:3px solid red;
+    z-index: 99;    
     margin-top: 0;
     top: 0;
     ul {
