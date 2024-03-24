@@ -29,11 +29,11 @@
           </div>
           <div class="detail-num">
             <label for="">數量:</label>
-            <input type="number" min="0" max="99" v-model="number" />
+            <input type="number" min="0" max="99" v-model="quantity" />
           </div>
           <div class="detail-button">
             <button type="button" class="btn btn-outline-danger btn-lg">加入調飲室</button>
-            <button type="button" class="btn btn-danger btn-lg">加入購物車</button>
+            <button type="button" class="btn btn-danger btn-lg" @click="addToCart(product.id,quantity)">加入購物車</button>
           </div>
         </div>
         <!--end of info-->
@@ -54,7 +54,7 @@ export default {
       VITE_URL: import.meta.env.VITE_URL,
       VITE_NAME: import.meta.env.VITE_NAME,
       product: '',
-      number: 1,
+      quantity: 1,
       descrtption: []
     }
   },
@@ -62,8 +62,7 @@ export default {
     const { id } = this.$route.params
     this.getProductInfo(id)
   },
-  methods: {
-    
+  methods: {    
     getProductInfo(id) {
       console.log('id', id)
       this.$http
@@ -79,7 +78,21 @@ export default {
     },
     clickReturn(){
         this.$router.push(`/products`)
-    }
+    },
+    addToCart(product_id,qty){      
+        const cartData = {
+        product_id,
+        qty,
+      };     
+        this.$http
+        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
+        .then((res) => {
+         console.log('res',res)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    },
   }
 }
 </script>

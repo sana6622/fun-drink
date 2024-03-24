@@ -67,7 +67,7 @@
               </div>
               <div class="card-btn">
                 <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                <button type="button" class="btn btn-danger">加入購物車</button>
+                <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)">加入購物車</button>
               </div>
             </div>
           </li>
@@ -144,7 +144,24 @@ export default {
     clickMore(id){
       console.log('click id',id)
       this.$router.push(`products/${id}`)
-    }
+    },
+
+    addToCart(product_id,qty){
+      console.log(product_id,qty)      
+        const cartData = {
+        product_id,
+        qty,
+      };     
+        this.$http
+        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
+        .then((res) => {
+         console.log('res',res)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+    },
+
   }
 }
 </script>
