@@ -1,6 +1,6 @@
 <template>
   <div id="ProductView">
-    <div class="sub-navbar page-container">
+    <div class="sub-navbar front-container">
       <ul class="sub-nav-ul">
         <li class="nav-drink" @click.prevent="clickNav('drinkMenu')">
           <p class="nav-title">飲品</p>
@@ -27,7 +27,7 @@
         <button class="btn btn-outline-danger" type="submit">Search</button>
       </form>
     </div>
-    <main class="page-container">
+    <main class="front-container">
 
       <ul class="menu">
         <li v-for="(menu, index) in menu" :key="index" class="menu-li">
@@ -59,10 +59,11 @@
                     {{ des }}
                   </p>
                 </div>
-              <p class="card-more">查看詳情</p>
+              <p class="card-more" @click="clickMore(item.id)">查看詳情</p>
               <div class="card-price">
-                <span>優惠價 ${{ item.price }}</span>
-                <span>原價 ${{ item.origin_price }}</span>
+                <span v-show="item.price==item.origin_price">價格 ${{ item.price }}</span>
+                <span v-show="item.price!=item.origin_price">優惠價 ${{ item.price }}</span>
+                <span v-show="item.price!=item.origin_price">原價 ${{ item.origin_price }}</span>
               </div>
               <div class="card-btn">
                 <button type="button" class="btn btn-outline-danger">加入調飲室</button>
@@ -100,8 +101,7 @@ export default {
     this.getProducts(this.productCategory)
   },
   methods: {
-    getProducts(category) {
-      console.log('category get', category)
+    getProducts(category) {     
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
         .then((res) => {
@@ -137,10 +137,13 @@ export default {
       this.products=[]
       this.ingredientsMenu[itemIndex].subTitle.forEach(category=>{        
       this.getProducts(category)
-      })
-      
+      })     
         
       }
+    },
+    clickMore(id){
+      console.log('click id',id)
+      this.$router.push(`products/${id}`)
     }
   }
 }

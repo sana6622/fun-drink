@@ -181,8 +181,6 @@
     }
 
     .products {
-
-
         flex: 1;
 
         h2 {
@@ -202,9 +200,8 @@
 
             .card {
                 width: 300px;
+                margin-bottom: 10px;
             }
-
-
             .list-card {
                 width: 100%;
                 background-color: #fff;
@@ -243,6 +240,7 @@
 
                     img {
                         width: 100%;
+                        height: 262px;
                     }
                 }
 
@@ -291,13 +289,19 @@
                     margin-bottom: 16px;
 
                     :nth-child(1) {
+                        color: block;
+                        font-size: 22px;
+                        font-weight: 500;
+                        padding-right: 8px;
+                    }
+                    :nth-child(2) {
                         color: #E94709;
                         font-size: 22px;
                         font-weight: 500;
                         padding-right: 8px;
                     }
 
-                    :nth-child(2) {
+                    :nth-child(3) {
                         color: #686869;
                         font-size: 16px;
                         font-weight: 400;
@@ -345,34 +349,34 @@
 
 
 
-    .btn-outline-danger {
-        --bs-btn-hover-color: white;
-        --bs-btn-active-color: white;
-        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    }
+    // .btn-outline-danger {
+    //     --bs-btn-hover-color: white;
+    //     --bs-btn-active-color: white;
+    //     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    // }
 
-    .btn-danger {
-        --bs-btn-color: white;
-        --bs-btn-hover-color: white;
-        --bs-btn-active-color: white;
-        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    }
+    // .btn-danger {
+    //     --bs-btn-color: white;
+    //     --bs-btn-hover-color: white;
+    //     --bs-btn-active-color: white;
+    //     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    // }
 
 
 
-    .page-container {
-        padding-right: 120px;
-        padding-left: 120px;
+    // .page-container {
+    //     padding-right: 120px;
+    //     padding-left: 120px;
 
-        @media screen and (max-width: 1200px) {
-            padding-right: 120px;
-            padding-left: 120px;
-        }
+    //     @media screen and (max-width: 1200px) {
+    //         padding-right: 120px;
+    //         padding-left: 120px;
+    //     }
 
-        @media screen and (max-width: 992px) {
-            padding-right: 20px;
-            padding-left: 20px;
+    //     @media screen and (max-width: 992px) {
+    //         padding-right: 20px;
+    //         padding-left: 20px;
 
-        }
-    }
+    //     }
+    // }
 }

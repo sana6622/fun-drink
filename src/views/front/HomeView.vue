@@ -185,7 +185,7 @@
                     {{ des }}
                   </p>
                 </div>
-                <p class="card-more">查看詳情</p>
+                <p class="card-more" @click="clickMore(item.id)">查看詳情</p>
                 <div class="card-price">
                   <span>優惠價 ${{ item.price }}</span>
                   <span>原價 ${{ item.origin_price }}</span>
@@ -329,6 +329,10 @@ export default {
       } else {
         this.getProducts(category)
       }
+    },
+    clickMore(id){
+      console.log('click id',id)
+      this.$router.push(`products/${id}`)
     }
   }
 }
