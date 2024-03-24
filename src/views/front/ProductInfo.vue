@@ -63,13 +63,11 @@ export default {
     this.getProductInfo(id)
   },
   methods: {    
-    getProductInfo(id) {
-      console.log('id', id)
+    getProductInfo(id) {     
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/product/${id}`)
         .then((res) => {
-          this.product = res.data.product
-          console.log('product', this.product)
+          this.product = res.data.product          
           this.descrtption = this.product.description[0].des
         })
         .catch((error) => {

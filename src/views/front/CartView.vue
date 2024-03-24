@@ -1,15 +1,9 @@
 <template>
   <div id="CartView" class="cart front-container">
-    <h2>購物車</h2>   
-  
-    <StepFirst v-if="step===1"></StepFirst>
-    <StepSecond v-else-if="step===2"></StepSecond>
-    <StepThird v-else-if="step===3"></StepThird>
-
-    <div class="button-area">
-      <button type="button" class="btn btn-outline-danger btn-lg" @click="clickPrev">上一步</button>
-      <button type="button" class="btn btn-danger btn-lg" @click="clickNext">下一步</button>
-    </div>
+    <h2>購物車</h2>     
+    <StepFirst v-if="step===1" v-on:step="getStep"></StepFirst>
+    <StepSecond v-else-if="step===2" v-on:step="getStep"></StepSecond>
+    <StepThird v-else-if="step===3" v-on:step="getStep"></StepThird>
   </div>
 </template>
 <script>
@@ -27,7 +21,9 @@ export default {
   },
   data() {
     return {
-      step:1
+      step:1,
+      buttonNextText:'下一步',
+      formData:{},
     }
   },
   mounted(){
@@ -35,18 +31,10 @@ export default {
 
   },
   methods:{
-    clickPrev(){       
-      if(this.step!=1){
-        this.step--
-      }     
-
-    },
-    clickNext(){  
-     
-      if(this.step!=3){
-        this.step++
-      }
-   
+    getStep(number){
+      console.log('get numb',number)
+      this.step = number
+      console.log('get step',number)
     },
   }
 }
@@ -60,7 +48,7 @@ export default {
 #CartView{
     padding-top: 70px;
     padding-bottom: 300px;
-    height: 700px;
+   
   
 
     background: url(../../../public/ImgCSBg.png);

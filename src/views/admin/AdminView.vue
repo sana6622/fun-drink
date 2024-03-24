@@ -22,9 +22,9 @@
         </button>
         <div class="collapse navbar-collapse" ref="navRef" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <RouterLink to="/admin/adminHome">後台首頁</RouterLink>
-            </li>
+            </li> -->
             <li class="nav-item">
               <RouterLink to="/admin/adminProducts">產品列表</RouterLink> 
             </li>

@@ -361,7 +361,6 @@ export default {
         this.des = originDes.map((item) => ({ value: item }))
         this.tag = this.tempProduct.description[1].tag
         this.sell = this.tempProduct.description[2].sell
-
         this.contents = this.tempProduct.content
       }
     }
@@ -408,7 +407,7 @@ export default {
     },
 
     submitProduct() {
-      console.log('this.selectedItem',this.selectedItem)
+      // console.log('this.selectedItem',this.selectedItem)
       const desArray = this.des.map((item) => item.value)
       const datas = {
         ...this.tempProduct,
@@ -416,10 +415,7 @@ export default {
         unit: this.unitOption[this.selectedUnit].text,
         content: this.contents,
         description: [{ des: desArray }, { tag: this.tag }, { sell: this.sell }]
-      }
-      console.log('datas',datas)
-      console.log('this.selectedItem',this.selectedItem)
-      console.log('this.categoryOption[this.selectedItem].text',this.categoryOption[this.selectedItem].text)
+      }     
       let api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`
 
       if (this.isCreate) {

@@ -71,7 +71,9 @@ export default {
           document.cookie = `hexschoolToken=${token}; expires=${new Date(expired)}`;
 
           // 進後台
-          this.$router.push('/admin/adminHome');
+          // this.$router.push('/admin/adminHome');
+          this.$router.push('/admin/adminProducts');
+         
         })
         .catch((error) => {
           console.log('login error', error);

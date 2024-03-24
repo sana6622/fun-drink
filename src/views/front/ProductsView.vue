@@ -24,7 +24,7 @@
       </ul>
       <form role="search ">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-danger" type="submit">Search</button>
+        <button class="btn btn-outline-danger disabled" type="submit">Search</button>
       </form>
     </div>
     <main class="front-container">
@@ -97,7 +97,7 @@ export default {
     }
   },
   mounted() {
-    this.menu = this.ingredientsMenu
+    this.menu = this.drinkMenu
     this.getProducts(this.productCategory)
   },
   methods: {
