@@ -92,25 +92,26 @@
       ref="productModal"
     ></ProductModal>
 
-    <DeleteProductModal
+    <DeleteModal
       :id="deleteProductId"
       :title="deleteProductTitle"
+      :status="status"
       @delete="getProducts"
       ref="deleteModal"
-    ></DeleteProductModal>
+    ></DeleteModal>
   </div>
 </template>
 
 <script>
 import ProductModal from '@/components/ProductModal.vue'
-import DeleteProductModal from '@/components/DeleteProductModal.vue'
+import DeleteModal from '@/components/DeleteModal.vue'
 import Swal from 'sweetalert2'
 import { watch } from 'vue'
 
 export default {
   components: {
     ProductModal,
-    DeleteProductModal
+    DeleteModal
   },
 
   data() {
@@ -141,7 +142,8 @@ export default {
       ],
       selectedCagetory: '所有類別',
       pagination: 1,
-      totalPage: 1
+      totalPage: 1,
+      status: 'deleteProduct'
     }
   },
 
@@ -157,34 +159,23 @@ export default {
 
   methods: {
     getProducts() {
+      let api = ''
       if (this.selectedCagetory === '所有類別') {
-        this.$http
-          .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.pagination}`)
-          .then((res) => {
-            console.log('res data', res.data)
-            this.totalPage = res.data.pagination.total_pages
-            this.products = Object.values(res.data.products)
-            console.log('product all', this.pagination, this.products)
-          })
-          .catch((error) => {
-            console.log('error', error)
-          })
+        api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.pagination}`
       } else {
-        this.$http
-          .get(
-            `${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.page}&category=${this.selectedCagetory}`
-          )
-          .then((res) => {
-            this.products = Object.values(res.data.products)
-            this.totalPage = res.data.pagination.total_pages
-            console.log('res data', res.data)
-            console.log('product', this.selectedCagetory, this.pagination, this.products)
-          })
-          .catch((error) => {
-            console.log('error', error)
-          })
+        api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.page}&category=${this.selectedCagetory}`
       }
+      this.$http
+        .get(api)
+        .then((res) => {
+          this.totalPage = res.data.pagination.total_pages
+          this.products = Object.values(res.data.products)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
     },
+
     openModal(status, product) {
       if (status === 'create') {
         this.isCreate = true
@@ -200,10 +191,10 @@ export default {
       this.deleteProductId = id
       this.deleteProductTitle = title
       this.$refs.deleteModal.showModal()
-      this.getProducts()
+      // this.getProducts()
     },
+
     clickPage(page) {
-      console.log('click page', page)
       this.pagination = page
     }
 
