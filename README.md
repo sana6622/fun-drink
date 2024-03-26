@@ -2,8 +2,8 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## 前台 :https://sana6622.github.io/fun-drink/#/
-## 後台:https://sana6622.github.io/fun-drink/#/login
+## 前台 :[https://sana6622.github.io/fun-drink/#/](https://sana6622.github.io/fun-drink/#/)
+## 後台:[https://sana6622.github.io/fun-drink/#/login](https://sana6622.github.io/fun-drink/#/login)
 
 ## User Stories
 ### 我是管理者 :
@@ -29,9 +29,9 @@ This template should help get you started developing with Vue 3 in Vite.
 
 
 ## 線稿圖、網站地圖、設計稿
-1.初步線稿圖 : https://whimsical.com/fun-drink-BLgvVSeJWpqNoKW4r6XnnE
-2.網站地圖 : https://whimsical.com/fun-drink-HPL5vnP7UAGurtapzdya7c
-3.設計稿(設計師繪製) : https://www.figma.com/file/C9C5vVgJlaRqISwwKzVV0M/%2316-%E7%8E%A9%E9%A3%B2%E6%96%99?type=design&node-id=0-1&mode=design&t=rZkkYE4LsrJX9D9X-0
+1. 初步線稿圖：[https://whimsical.com/fun-drink-BLgvVSeJWpqNoKW4r6XnnE](https://whimsical.com/fun-drink-BLgvVSeJWpqNoKW4r6XnnE)  
+2. 網站地圖：[https://whimsical.com/fun-drink-HPL5vnP7UAGurtapzdya7c](https://whimsical.com/fun-drink-HPL5vnP7UAGurtapzdya7c)  
+3. 設計稿（設計師繪製）：[https://www.figma.com/file/C9C5vVgJlaRqISwwKzVV0M/%2316-%E7%8E%A9%E9%A3%B2%E6%96%99?type=design&node-id=0-1&mode=design&t=rZkkYE4LsrJX9D9X-0](https://www.figma.com/file/C9C5vVgJlaRqISwwKzVV0M/%2316-%E7%8E%A9%E9%A3%B2%E6%96%99?type=design&node-id=0-1&mode=design&t=rZkkYE4LsrJX9D9X-0)
 
 ## Recommended IDE Setup
 
