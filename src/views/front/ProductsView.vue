@@ -1,5 +1,8 @@
 <template>
+
   <div id="ProductView">
+    <LoadingAnimation :isLoading="isLoading"></LoadingAnimation>  
+
     <div class="sub-navbar front-container">
       <ul class="sub-nav-ul">
         <li class="nav-drink" @click.prevent="clickNav('drinkMenu')">
@@ -79,10 +82,16 @@
 </template>
 
 <script>
+import LoadingAnimation from '../../components/LoadingAnimation.vue'
+
 export default {
-  components: {},
+  components: {
+    LoadingAnimation,
+  },
+
   data() {
     return {
+      isLoading:false,
       VITE_URL: import.meta.env.VITE_URL,
       VITE_NAME: import.meta.env.VITE_NAME,
       menu: {},
@@ -101,13 +110,15 @@ export default {
     this.getProducts(this.productCategory)
   },
   methods: {
-    getProducts(category) {     
+    getProducts(category) {    
+      this.isLoading = true 
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
         .then((res) => {
           const data = Object.values(res.data.products)       
           const datas =[...this.products,...data]       
-          this.products = datas          
+          this.products = datas   
+          this.isLoading = false       
         })
         .catch((error) => {
           console.log('error', error)
@@ -161,6 +172,9 @@ export default {
           console.log('error', error)
         })
     },
+    testLoading(){
+      this.isLoading = true
+    }
 
   }
 }
@@ -169,5 +183,5 @@ export default {
 <style >
 @import '../../style/ProductView.scss';
 @import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
-</style>
 
+</style>
