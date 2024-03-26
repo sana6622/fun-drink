@@ -422,7 +422,7 @@ export default {
         //新增
         this.$http
           .post(api, { data: datas })
-          .then((res) => {
+          .then(() => {
             this.$emit('product-change')
             this.resetData()
             this.modal.hide()

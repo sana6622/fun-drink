@@ -26,10 +26,9 @@
                 :key="`item-${index}`"
                 class="shadow py-3 px-2 mb-3 bg-body rounded"
               >
-                <div class="row mb-2">
-                  <div class="col-10 fs-5">{{ index + 1 }}. {{ item.product?.title }}</div>
-
-                  <div class="col-1">
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="fs-5">{{ index + 1 }}. {{ item.product?.title }}</div>
+                  <div>
                     <RiSkipDownLine
                       v-show="!opened[index]"
                       @click.prevent="opened[index] = !opened[index]"
@@ -44,7 +43,7 @@
                 <div v-show="opened[index]">
                   <p class="mb-3 fs-5">
                     <span> 產品id:</span>
-                    <span class="mb-3 fs-6">{{ item.product?.id }}</span>
+                    <span class="mb-3 fs-6 text-break">{{ item.product?.id }}</span>
                   </p>
                   <p class="mb-3 fs-5">
                     <span> 數量: </span>
@@ -79,11 +78,15 @@
               </div>
             </div>
             <div class="col-sm-7">
-              <div class="row d-flex align-items-center mb-2">
-                <p class="col-3 fs-5">總金額</p>
-                <p class="col-3 fs-5">{{ tempOrder.total }}元</p>
+              <div class="row d-flex align-items-center mb-3">
+                <p class="col-3 fs-5">訂購時間</p>
+                <p class="col-9 fs-5">{{ orderDate }}</p>
               </div>
-              <div class="row d-flex align-items-center mb-2">
+              <div class="row d-flex align-items-center mb-3">
+                <p class="col-3 fs-5">總金額</p>
+                <p class="col-9 fs-5">{{ tempOrder.total }}元</p>
+              </div>
+              <div class="row d-flex align-items-center mb-3">
                 <p class="col-3 fs-5">付款狀態</p>
                 <p class="col-6 fs-5">{{ tempOrder.is_paid ? '已付款' : '尚未付款' }}</p>
                 <div class="col-3 form-check">
@@ -97,7 +100,7 @@
                   <label class="form-check-label fs-5" for="flexCheckChecked"> 付款 </label>
                 </div>
               </div>
-              <div class="row d-flex align-items-center mb-2">
+              <div class="row d-flex align-items-center mb-3">
                 <label for="name" class="form-label col-3 fs-5">購買人</label>
                 <input
                   id="name"
@@ -106,7 +109,7 @@
                   v-model="tempOrder.user.name"
                 />
               </div>
-              <div class="row d-flex align-items-center mb-2">
+              <div class="row d-flex align-items-center mb-3">
                 <label for="tel" class="form-label col-3 fs-5">聯絡電話</label>
                 <input
                   id="tel"
@@ -115,7 +118,7 @@
                   v-model="tempOrder.user.tel"
                 />
               </div>
-              <div class="row d-flex align-items-center mb-2">
+              <div class="row d-flex align-items-center mb-3">
                 <label for="email" class="form-label col-3 fs-5">email:</label>
                 <input
                   id="email"
@@ -124,8 +127,14 @@
                   v-model="tempOrder.user.email"
                 />
               </div>
-              <div class="row d-flex align-items-center mb-2">
-                <label for="address" class="form-label col-3 fs-5">送貨地址:</label>
+
+              <div class="row d-flex mb-3">
+                <p for="address" class="form-label col-3 fs-5">取貨方式:</p>
+                <p class="fs-5 col-9 text-danger">{{ addressType }}</p>
+              </div>
+
+              <div class="row d-flex align-items-center mb-3" v-if="addressType == '外送'">
+                <label for="address" class="form-label col-3 fs-5">送貨地址</label>
                 <input
                   id="address"
                   type="text"
@@ -135,8 +144,8 @@
               </div>
 
               <div class="row d-flex align-items-center mb-2">
-                <p class="col-3 fs-5">留言:</p>
-                <p class="w-75">{{ tempOrder.message }}</p>
+                <p class="col-3 fs-5">留言</p>
+                <p class="col-9">{{ message }}</p>
               </div>
             </div>
           </div>
@@ -184,7 +193,9 @@ export default {
       },
       productNum: 0,
       productArray: [],
-      opened: []
+      opened: [],
+      orderDate: '',
+      addressType: ''
     }
   },
   mounted() {
@@ -196,6 +207,9 @@ export default {
       this.tempOrder = { ...this.order }
       this.productArray = Object.values(this.tempOrder.products)
       this.totalPrice = this.tempOrder.total
+      this.orderDate = `${this.tempOrder?.message[2].orderDate}  ${this.tempOrder?.message[3].orderTime}`
+      this.addressType = this.tempOrder.message[1].addressType
+      this.message = this.tempOrder.message[0].message
 
       //toggle 功能
       const num = this.productArray.length
@@ -236,8 +250,7 @@ export default {
         .put(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/order/${this.tempOrder?.id}`, {
           data: datas
         })
-        .then((res) => {
-          console.log('update res', res)
+        .then(() => {
           this.$emit('product-change')
           Swal.fire({
             icon: 'success',

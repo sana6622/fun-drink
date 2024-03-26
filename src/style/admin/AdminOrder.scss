@@ -84,18 +84,23 @@
                 font-weight: 500;
             }
             th:nth-child(1){              
-                width: 10%;
-            }     
+                width: 15%;                
+            }    
+          
 
             th:nth-child(2){               
-                width: 30%;
-            }    
+                width: 30%;               
+            }
+          
             th:nth-child(3){                
                 width: 10%;
             }       
 
-            th:nth-child(4),th:nth-child(5){                
-                width: 15%;
+            th:nth-child(4){                
+                width: 10%;
+            }
+            th:nth-child(5){                
+                width: 10%;
             }
 
             th:nth-child(6){              
@@ -119,21 +124,8 @@
                     font-weight: 500;
                 }  
                 th:nth-child(1),td:nth-child(1){              
-                    width: 10%;
-                    background-color: pink;
-                }     
-    
-                th:nth-child(2){               
-                    width: 30%;
+                    width: 10%;                 
                 }    
-                th:nth-child(3){                
-                    width: 10%;
-                }       
-    
-                th:nth-child(4),th:nth-child(5){                
-                    width: 15%;
-                }
-    
                 th:nth-child(6){              
                     min-width: 80px;
                 }    

@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      step:1,
+      step:2,
       buttonNextText:'下一步',
       formData:{},
     }

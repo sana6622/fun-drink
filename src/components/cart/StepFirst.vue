@@ -3,7 +3,7 @@
     <h3>購物明細</h3>
     <!-- <loading  v-model:active="isLoading"></loading> -->
     <div class="text-end">
-      <button class="btn btn-outline-danger mb-5" type="button" @click="deleteAllCart">
+      <button class="btn btn-outline-danger mb-2" type="button" @click="deleteAllCart">
         清空購物車
       </button>
     </div>
@@ -13,8 +13,7 @@
           <tr>
             <th></th>
             <th>品名</th>
-            <th style="width: 150px">數量</th>
-            <th>單位</th>
+            <th>數量</th>
             <th class="text-end">單價</th>
             <th class="text-end">小計</th>
           </tr>
@@ -76,9 +75,6 @@
                 </div>
               </div>
             </td>
-            <td>
-              {{ cart.product.unit }}
-            </td>
             <td class="text-end">
               <!-- <small class="text-success">折扣價：{{}}</small> -->
               {{ cart.product.price }}
@@ -90,22 +86,20 @@
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
-            <td></td>
-            <td colspan="3" class="text-end">總計</td>
+            <td colspan="4" class="text-end">總計</td>
             <td class="text-end">{{ carts.final_total }}</td>
           </tr>
-          <tr v-show="carts.final_total != carts.total">
-            <td></td>
-            <td></td>
-            <td colspan="3" class="text-end text-success">折扣價</td>
+          <tr v-show="carts.final_total != carts.total">            
+            <td colspan="4" class="text-end text-success">折扣價</td>
             <td class="text-end text-success">{{}}</td>
           </tr>
         </tfoot>
       </table>
     </div>
     <div class="button-area">
-      <button type="button" class="btn btn-outline-danger btn-lg" @click="clickPrev">回產品介紹</button>
+      <button type="button" class="btn btn-outline-danger btn-lg" @click="clickPrev">
+        回產品介紹
+      </button>
       <button type="button" class="btn btn-danger btn-lg" @click="clickNext">下一步</button>
     </div>
   </div>
@@ -162,6 +156,8 @@ export default {
         .then((res) => {
           console.log('chagne res', res)
           this.getCarts()
+        }).catch((e) => {
+          console.log('error', e)
         })
     },
 
@@ -169,9 +165,12 @@ export default {
     deleteCartItem(id) {
       this.cartChangeLoading = id
       console.log('dele', id)
-      this.$http.delete(`${this.VITE_URL}/api/${this.VITE_NAME}/cart/${id}`).then((res) => {
+      this.$http.delete(`${this.VITE_URL}/api/${this.VITE_NAME}/cart/${id}`)
+      .then(() => {
         this.getCarts()
-      })
+      }).catch((e) => {
+          console.log('error', e)
+        })
     },
 
     //刪除所有購物車商品
@@ -183,19 +182,16 @@ export default {
           alert(res.data.message)
         })
         .catch((e) => {
-          console.log('error', error)
+          console.log('error', e)
         })
     },
-    clickPrev(){      
-      this.$router.push(`/products`)    
-
+    clickPrev() {
+      this.$router.push(`/products`)
     },
 
-    clickNext(){
-      this.$emit('step',2)      
-   
-   
-    },
+    clickNext() {
+      this.$emit('step', 2)
+    }
   }
 }
 </script>
@@ -209,19 +205,60 @@ export default {
     text-align: center;
   }
   .table-cart {
-    @media screen and (max-width: 575px) {
+    padding: 20px;
+    @media screen and (max-width: 768px) {
       overflow-x: auto;
     }
   }
   table {
+    font-size: 20px;
+
+    th {
+      font-size: 20px;
+      padding: 14px 14px;
+    }
+
+    th:nth-child(1) {
+      width: 10%;
+    }
+    th:nth-child(2) {
+      width: 40%;
+    }
+    th:nth-child(3) {
+      width: 20%;
+    }
+    td:nth-child(3) {
+      input {
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        text-align: center;
+        padding-left: 8px;
+        padding-right: 0;
+      }
+    }
+    th:nth-child(4),
+    th:nth-child(5) {
+      width: 15%;
+    }
+
     tr {
-      border: 1px solid rgb(219, 137, 69);
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
       text-align: center;
       vertical-align: middle;
-      padding: 8px;
+      padding: 10px;
     }
-    @media screen and (max-width: 575px) {
-      min-width: 500px;
+    td {
+      padding: 14px 14px;
+    }
+
+    @media screen and (max-width: 768px) {
+      min-width: 740px;
+    }
+    button {
+      span {
+        padding-right: 4px;
+        padding-left: 4px;
+      }
     }
   }
 }

@@ -60,8 +60,8 @@
             <img src="../../../public/logoSm.png" alt="logo" />
           </div>
           <ul class="area-meun">
-            <li>產品介紹</li>
-            <li>DIY調飲室</li>
+            <li> <RouterLink to="/products">產品介紹</RouterLink></li>
+            <li><RouterLink to="/DIYdrink">DIY 調飲室</RouterLink></li>
             <li>常見問題</li>
             <li><RouterLink to="/login">後台登入</RouterLink></li>
           </ul>
@@ -239,12 +239,14 @@ export default {
         text-align: center;
         position: absolute;
         top: -100px;
-        left: 48%;
+        left: 48%;        
         img {
           width: 100%;
+          transition: transform 0.3s ease, font-size 0.3s ease; /* 平滑效果 */
+          transform-origin: center bottom; /* 原點設定 */
         }
         :hover {
-          width: 200px;
+          transform: scale(1.2);          
         }
       }
 

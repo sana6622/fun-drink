@@ -16,21 +16,24 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>序號</th>
-            <th>訂單編號</th> 
+            <th>訂購時間</th>           
+            <th>訂單編號</th>         
             <th>杯數</th>           
-            <th>訂單總價</th>
-            <th>付款狀態</th>         
+            <th>金額</th>
+            <th>取貨</th>
+            <th>狀態</th>                     
             <th>編輯</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="order in orderData" :key="order.id">
-            <td>{{ order.num }}</td>
-            <td>{{ order.id }}</td>   
+            <td>{{ order?.message[2].orderDate}}{{ order?.message[3].orderTime }}</td> 
+            
+            <td class=" text-break">{{ order.id }}</td>             
             <td>{{ order.totalQty }}</td>        
             <td>{{ order.total }}</td>
-            <td>{{ order.is_paid? '已付款':'尚未付款'}}</td>
+            <td>{{ order?.message[1].addressType }}</td>
+            <td>{{ order.is_paid? '已付款':'未付款'}}</td>            
            
             <td>
               <div class="btn-group">
@@ -112,7 +115,10 @@ export default {
       status:'deleteOrder',      
      
       pagination: 1,
-      totalPage: 1
+      totalPage: 1,
+      orderDate: '',
+      addressType: ''
+
     }
   },
 
@@ -133,7 +139,7 @@ export default {
           .then((res) => {
             console.log('res data', res.data)
             this.orderData = res.data.orders           
-            this.totalPage = res.data.pagination.total_pages 
+            this.totalPage = res.data.pagination.total_pages    
             this.countNumber()       
         
           })
