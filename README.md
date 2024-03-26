@@ -3,7 +3,7 @@
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Page
-### 前台 :
+### 前台:
 [https://sana6622.github.io/fun-drink/#/](https://sana6622.github.io/fun-drink/#/)
 ### 後台:
 [https://sana6622.github.io/fun-drink/#/login](https://sana6622.github.io/fun-drink/#/login)
