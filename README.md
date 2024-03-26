@@ -2,17 +2,17 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## 前台 :(https://sana6622.github.io/fun-drink/#/)
-## 後台；(https://sana6622.github.io/fun-drink/#/login)
+## 前台 :https://sana6622.github.io/fun-drink/#/
+## 後台；https://sana6622.github.io/fun-drink/#/login
 
 ## User Stories
-###我是管理者 ；
+### 我是管理者 ；
 1.	我可以新增、更新、刪除產品資料 
 2.	我可以查看及刪除訂單
 3.	我可以修改訂單的訂購者相關資訊
 4.	我可以新增、更新、刪除優惠券 (開發中)
 
-###我是顧客 ；
+### 我是顧客 ；
 1.	我可以依據分類(飲品、食材)查看相對應產品。
 2.	我可以看到產品的詳細內容。
 3.	我可以將「熱門飲品」及「創意飲品」內的產品加入購物車。
