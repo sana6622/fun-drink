@@ -1,5 +1,6 @@
 <template>
   <div id="AdminProduct">
+    <LoadingAnimation :isLoading="isLoading"></LoadingAnimation>  
     <h1>產品列表</h1>
     <div class="text-end mt-4">
       <button class="btn btn-primary" @click="openModal('create', {})">建立新的產品</button>
@@ -75,12 +76,12 @@
     <nav aria-label="Page navigation example ">
       <ul class="pagination justify-content-end my-5">
         <li
-          class="page-item"
+          class="page-item "
           v-for="page in totalPage"
           :key="`page-${page}`"
           @click="clickPage(page)"
         >
-          <a class="page-link">{{ page }}</a>
+          <a class="page-link fs-5">{{ page }}</a>
         </li>
       </ul>
     </nav>
@@ -105,11 +106,13 @@
 <script>
 import ProductModal from '@/components/ProductModal.vue'
 import DeleteModal from '@/components/DeleteModal.vue'
+import LoadingAnimation from '../../components/LoadingAnimation.vue'
 import Swal from 'sweetalert2'
 import { watch } from 'vue'
 
 export default {
   components: {
+    LoadingAnimation,
     ProductModal,
     DeleteModal
   },
@@ -118,6 +121,7 @@ export default {
     return {
       VITE_URL: import.meta.env.VITE_URL,
       VITE_NAME: import.meta.env.VITE_NAME,
+      isLoading:false,
       products: [],
       filterProducts: [],
       tempProduct: {},
@@ -159,6 +163,7 @@ export default {
 
   methods: {
     getProducts() {
+      this.isLoading = true 
       let api = ''
       if (this.selectedCagetory === '所有類別') {
         api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/products?page=${this.pagination}`
@@ -170,6 +175,7 @@ export default {
         .then((res) => {
           this.totalPage = res.data.pagination.total_pages
           this.products = Object.values(res.data.products)
+          this.isLoading = false 
         })
         .catch((error) => {
           console.log('error', error)

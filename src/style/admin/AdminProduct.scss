@@ -1,5 +1,4 @@
 #AdminProduct {
-
     font-family: 'Noto Sans TC', sans-serif;
     padding-right: 200px;
     padding-left: 200px;
@@ -33,15 +32,11 @@
 
         p {
             font-size: 20px;
-
-
         }
 
         select {
-            flex: 1;
-            // width: 25%;
+            flex: 1;   
             margin: 12px 12px;
-
         }
 
         @media screen and (max-width: 767px) {
@@ -60,9 +55,7 @@
             button {
                 font-size: 12px;
             }
-
         }
-
     }
 
     .table-product {
@@ -128,7 +121,6 @@
                         text-decoration: line-through;
                         color: gray;
                         font-size: 16px;
-
                     }
                 }
             }
@@ -137,7 +129,6 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 8px;
-
                 button {
                     border-radius: 10px;
                 }
@@ -145,7 +136,6 @@
 
             @media screen and (max-width: 575px) {
                 font-size: 12px;
-
                 th {
                     font-size: 14px;
                     font-weight: 500;
@@ -153,14 +143,12 @@
 
                 td:nth-child(4) {
                     div {
-
                         p:nth-child(1),
                         p:nth-child(2) {
                             font-size: 12px;
                         }
                     }
                 }
-
                 .btn-group {
                     button {
                         font-size: 12px;
@@ -168,14 +156,10 @@
                 }
             }
 
-
-
             @media screen and (max-width: 375px) {
                 th:nth-child(1) {
                     display: none;
                 }
-
-
 
                 td:nth-child(1) {
                     display: none;
@@ -188,11 +172,6 @@
                         }
                     }
                 }
-
-                // th:nth-child(5){             
-                //     width: 15%;
-                //     background-color: green;                               
-                //  }
                 td:nth-child(2) {
                     width: 40%;
                 }
@@ -209,25 +188,17 @@
 
                 .btn-group {
                     flex-direction: column;
-
-
-
                     button {
-
                         padding-right: 0;
                         padding-left: 0;
-
-
-
-
                     }
-
                 }
             }
-
-
-
         }
+    }
+    .page-item{
+        cursor: pointer;
+
     }
 
     .btn-outline-danger {

@@ -47,10 +47,7 @@ export default {
 
 #CartView{
     padding-top: 70px;
-    padding-bottom: 300px;
-   
-  
-
+    padding-bottom: 300px;  
     background: url(../../../public/ImgCSBg.png);
     background-size: 100% 100%;
     @media screen and (max-width: 575px) {

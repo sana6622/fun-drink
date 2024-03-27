@@ -216,8 +216,8 @@ export default {
           this.totalPrice = res.data.data.final_total
           console.log('data', res.data.data.final_total)
           console.log('carts', this.carts)
-
           this.cartChangeLoading = ''
+          
           //toggle 功能
           const num = this.carts.length
           this.opened = Array(num).fill(false)
@@ -236,8 +236,7 @@ export default {
     clickPrev() {
       this.$emit('step', 1)
     },
-    render(){
-      console.log('this.renderA',this.renderAddress)
+    render(){    
       this.renderAddress++
     },
 
@@ -262,10 +261,6 @@ export default {
           { orderTime:Time}
          ]
       }
-
-      console.log('data', datas)
-      console.log('type',this.addressType)
-      console.log('date',new Date())
 
       this.$http
         .post(`${this.VITE_URL}/api/${this.VITE_NAME}/order`, { data: datas })

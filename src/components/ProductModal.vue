@@ -204,7 +204,7 @@
                   <label class="w-25 d-sm-none text-center me-2 fs-5">分類:</label>
                   <select class="form-select" aria-label="Select sub-categoty" v-model="item.type">
                     <option
-                      :value="typeItem.value"
+                      :value="typeItem.text"
                       v-for="(typeItem, index) in contentTypeOption"
                       :key="`contentType-${index}`"                     
                     >
@@ -348,6 +348,7 @@ export default {
     product() {
       this.resetData()
       this.tempProduct = this.product
+      console.log('product',this.product)
       const propSelect = this.categoryOption.find((item) => item.text === this.tempProduct.category)
       if (propSelect) {
         this.selected = propSelect.typeValue

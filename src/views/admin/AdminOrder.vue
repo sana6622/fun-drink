@@ -1,5 +1,6 @@
 <template>
-  <div id="AdminProduct">
+  <div id="AdminOrder">
+    <LoadingAnimation :isLoading="isLoading"></LoadingAnimation>  
     <h1>訂單列表</h1>
     
     <!-- <div class="select-area">
@@ -27,7 +28,10 @@
         </thead>
         <tbody>
           <tr v-for="order in orderData" :key="order.id">
-            <td>{{ order?.message[2].orderDate}}{{ order?.message[3].orderTime }}</td> 
+            <td>
+              <p>{{ order?.message[2].orderDate}}</p> 
+              <p>{{ order?.message[3].orderTime }}</p> 
+            </td> 
             
             <td class=" text-break">{{ order.id }}</td>             
             <td>{{ order.totalQty }}</td>        
@@ -95,12 +99,13 @@
 
 import DeleteModal from '@/components/DeleteModal.vue'
 import OrderModal from'@/components/OrderModal.vue'
-
+import LoadingAnimation from '../../components/LoadingAnimation.vue'
 import Swal from 'sweetalert2'
 import { watch } from 'vue'
 
 export default {
-  components: {  
+  components: { 
+    LoadingAnimation, 
     DeleteModal,
     OrderModal
   },
@@ -109,16 +114,15 @@ export default {
     return {
       VITE_URL: import.meta.env.VITE_URL,
       VITE_NAME: import.meta.env.VITE_NAME,
+      isLoading:false,
       orderData:[], 
       tempOrder:{},
       deleteId:'',
-      status:'deleteOrder',      
-     
+      status:'deleteOrder',     
       pagination: 1,
       totalPage: 1,
       orderDate: '',
       addressType: ''
-
     }
   },
 
@@ -133,7 +137,8 @@ export default {
   },
 
   methods: {
-    getOrders() {    
+    getOrders() { 
+      this.isLoading = true    
         this.$http
           .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/orders?page=${this.pagination}`)
           .then((res) => {
@@ -141,6 +146,7 @@ export default {
             this.orderData = res.data.orders           
             this.totalPage = res.data.pagination.total_pages    
             this.countNumber()       
+            this.isLoading = false 
         
           })
           .catch((error) => {
