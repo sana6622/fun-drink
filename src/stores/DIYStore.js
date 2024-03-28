@@ -10,8 +10,7 @@ export default defineStore ('DIYStore' ,{
 
   }),
   actions:{
-    addToDIY(product){
-      console.log('pinia cate',product.category)
+    addToDIY(product){     
       if(product.category ==='茶類' || product.category ==='果汁' || product.category ==='其他基底'){
         const check = this.diyBasic.some((item) => item.id === product.id)
         if(!check) this.diyBasic.push(product)

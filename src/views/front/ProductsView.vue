@@ -85,7 +85,6 @@
 import LoadingAnimation from '../../components/LoadingAnimation.vue'
 
 import {mapActions} from 'pinia'
-import cartStore from'../../stores/DIYStore'
 import DIYStore from '../../stores/DIYStore'
 
 export default {
@@ -116,6 +115,7 @@ export default {
   methods: {
     getProducts(category) {    
       this.isLoading = true 
+      console.log('cate',`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
         .then((res) => {

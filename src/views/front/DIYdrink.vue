@@ -63,8 +63,9 @@
               v-for="(product, productIndex) in products"
               :key="`product-${productIndex}`"
               :class="{ clickedProduct: selectedProductIndex === productIndex }"
-              @click="selectPrduct(productIndex, product.id, product.title, product.imageUrl)"
+              @click="selectPrduct(product,productIndex)"
             >
+            <!-- @click="selectPrduct(productIndex, product.id, product.title, product.imageUrl)" -->
               <div class="img">
                 <img :src="product.imageUrl" alt="" />
               </div>
@@ -156,6 +157,11 @@
               </div>
             </div>
           </div>
+
+          <div>
+            <span>總金額: {{totalPrice}}</span>
+            <span>原價:{{ totalOriginPrice }}</span>
+          </div>
         </div>
 
         <div class="area-picked">
@@ -177,7 +183,7 @@
                 <div class="img">
                   <img :src="pickedItem.imageUrl" alt="" />
                 </div>
-                <p>{{ pickedItem.title }}</p>
+                <p>{{ pickedItem.title }}  {{ pickedItem.originPrice }}</p>
               </div>
               <button
                 type="button"
@@ -198,7 +204,9 @@
           </ul>
         </div>
       </div>
+      <button type="button" class="btn btn-danger " @click="addToCart()">加入購物車</button>
     </main>
+   
   </div>
 </template>
 
@@ -234,7 +242,10 @@ export default {
       colorBasic: ['#ffb6bb', '#bbe7ba', '#95d5ee', '#ffe691'],
       colorIngredient: ['#92c9da', '#c9b1cf', '#8cc296', '#f8b976'],
       colorSweet: ['#ffe691', '#95d5ee', '#ffb6bb', '#bbe7ba'],
-      rateNumber: 0
+      rateNumber: 0,
+      totalPrice:0,
+      totalOriginPrice:0,
+      title:''
     }
   },
 
@@ -283,22 +294,30 @@ export default {
         })
     },
 
-    selectPrduct(index, id, title, image) {
-      this.selectedProductIndex = index
+    selectPrduct(product,index) {
+      this.selectedProductIndex = index  
 
       //有無重複
-      const check = this.pickedTemp.some((item) => item.id === id)
+      const check = this.pickedTemp.some((item) => item.id === product.id)
 
       if (this.pickedTemp.length < 4) {
         // 加入下方 基底 picked
         if (!check) {
           this.pickedTemp.push({
-            id: id,
-            imageUrl: image,
-            title: title,
+            id: product.id,
+            imageUrl: product.imageUrl,
+            title: product.title,
+            type:product.category,
+            unit:product.unit,
+            originPrice:product.origin_price,
+            price:product.price,
             rate: this.rateNumber,
-            color: ''
+            selectedNavIndex:this.selectedNavIndex,
+            color: '',           
+
           })
+          console.log('this picked',this.pickedTemp)
+          // this.calculatePrice()
           this.changeColor(this.selectedNavIndex)
         }
       } else if (this.pickedTemp.length >= 4) {
@@ -359,7 +378,148 @@ export default {
         })
         this.pickedSweet = [...this.pickedTemp]
       }
-    }
+      
+    },
+
+    calculatePrice(priceType){    
+    const pickedAll =[...this.pickedBasic,...this.pickedIngredient,...this.pickedSweet]  
+      let total = 0      
+      pickedAll.forEach((item) => {
+        if(item.selectedNavIndex === 0){
+          total += item[priceType] * (item.rate/10)         
+        }else if(item.selectedNavIndex ===1 ){
+          total += item[priceType] * item.rate         
+        }        
+      })
+      return total      
+    },
+
+
+    addToCart(){ 
+      this.findDIYProduct() 
+      //因為API限制，所以只能先登入，進行create 商品，再加入購物車,完成後登出
+
+      //登入
+    //   this.$http.post(`${this.VITE_URL}/admin/signin`,{
+    //     username: 'taniya.hsu@gmail.com',
+    //     password: '123456789'
+    //   }).then(res =>{
+    //     console.log('login res',res)
+    //     const { token, expired } = res.data;
+    //     document.cookie = `hexschoolToken=${token}; expires=${new Date(expired)}`;
+    //     console.log('token',token)
+    //     const token1 = document.cookie.replace(
+    //   /(?:(?:^|.*;\s*)hexschoolToken\s*=\s*([^;]*).*$)|^.*$/,
+    //   '$1'
+      
+    // )
+    //     console.log('token1',token1)
+    //     this.$http.defaults.headers.common['Authorization'] = token1
+    //     this.createProduct()
+
+
+    //   }).catch((error) => {
+    //       console.log('login error', error);
+    //       alert('登入失敗');
+    //     });
+
+
+    //   //建立商品
+   
+     
+
+
+      //登出
+
+
+    },
+
+    createProduct(){
+      console.log('create')   
+            
+      // const pickedAll =[...this.pickedBasic,...this.pickedIngredient,...this.pickedSweet]   
+      // let content = []
+      // pickedAll.forEach(item=>{
+      //   console.log(item)
+      //   content.push({
+      //     count:item.rate,
+      //     goods:item.title,
+      //     type:item.type,
+      //     unit:item.unit,
+      //   })
+      // })
+
+      // console.log('pickedAll',pickedAll)
+      // console.log('content',content)
+      // const timestamp = Date.now();
+      // console.log('time',timestamp)
+   
+      // const data = {
+      //   category:'DIY',
+      //   content:content,
+      //   is_enabled: 1,
+      //   num: 1,
+      //   origin_price: this.totalOriginPrice,
+      //   unit:'杯',
+      //   price: this.totalPrice,
+      //   title:`測試-${timestamp}`,
+      //   description:{},
+
+      // }
+      // console.log('data',data)
+
+      // this.$http
+      //   .post(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`,{ data: data })
+      //   .then((res) => {
+      //    console.log('create res',res)
+      //   })
+      //   .catch((error) => {
+      //     console.log('error', error)
+      //   })
+    },
+
+    //尋找產品id + 加入購物車
+    findDIYProduct(){
+      console.log('find fun')
+      this.title ='測試-1711645966755'
+      console.log('cate',`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=熱門飲品`)
+      this.$http
+        .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=DIY`)
+        .then((res) => {
+          console.log('res',res.data.products)
+          const datas = res.data.products
+          console.log('data',datas)
+          const index = datas.findIndex(item=>item.title===this.title)
+          console.log('index',index)
+          const findId = datas[index].id
+        
+          this.addIdToCart(findId,1)
+           
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+
+    },
+
+    addIdToCart(product_id,qty){
+      console.log(product_id,qty)      
+        const cartData = {
+        product_id,
+        qty,
+      };     
+        this.$http
+        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
+        .then((res) => {
+         console.log('res',res)
+        })
+        .catch((error) => {
+          console.log('error', error)
+        })
+      }
+
+    //
+
   },
   computed: {
     //取pinia值
@@ -380,6 +540,17 @@ export default {
         totalRate += item.rate
       })
       return totalRate
+    },
+
+    totalPrice(){   
+     const countPrice = this.calculatePrice('price')
+      this.totalPrice = countPrice
+      return countPrice
+    },
+    totalOriginPrice(){    
+      const countPrice = this.calculatePrice('originPrice')
+      this.totalOriginPrice = countPrice 
+      return countPrice
     }
   },
   watch: {

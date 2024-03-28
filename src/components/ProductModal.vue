@@ -358,10 +358,10 @@ export default {
         this.selectedItem = 0
       }
       if (!this.isCreate) {
-        let originDes = this.tempProduct.description[0].des
+        let originDes = this.tempProduct?.description[0].des
         this.des = originDes.map((item) => ({ value: item }))
-        this.tag = this.tempProduct.description[1].tag
-        this.sell = this.tempProduct.description[2].sell
+        this.tag = this.tempProduct?.description[1].tag
+        this.sell = this.tempProduct?.description[2].sell
         this.contents = this.tempProduct.content
       }
     }
