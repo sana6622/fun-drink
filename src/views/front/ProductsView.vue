@@ -69,7 +69,7 @@
                 <span v-show="item.price!=item.origin_price">原價 ${{ item.origin_price }}</span>
               </div>
               <div class="card-btn">
-                <button type="button" class="btn btn-outline-danger">加入調飲室</button>
+                <button type="button" class="btn btn-outline-danger" @click="addToDIY(item)">加入調飲室</button>
                 <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)">加入購物車</button>
               </div>
             </div>
@@ -83,6 +83,10 @@
 
 <script>
 import LoadingAnimation from '../../components/LoadingAnimation.vue'
+
+import {mapActions} from 'pinia'
+import cartStore from'../../stores/DIYStore'
+import DIYStore from '../../stores/DIYStore'
 
 export default {
   components: {
@@ -174,7 +178,12 @@ export default {
     },
     testLoading(){
       this.isLoading = true
-    }
+    },
+    
+    //加入pinia 
+    ...mapActions(DIYStore,['addToDIY'])
+
+
 
   }
 }

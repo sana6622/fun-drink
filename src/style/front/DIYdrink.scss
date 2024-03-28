@@ -15,7 +15,7 @@
 
             .clicked {
                 border: 1px solid gray;
-                box-shadow: 1px 1px 2px 1px rgba(182, 177, 171, 0.5);
+                box-shadow: 1px 0px 2px 1px rgba(182, 177, 171, 0.5);
                 border-bottom: 0;
             }
 
@@ -31,6 +31,7 @@
         .area-select {
             padding-bottom: 30px;
             font-size: 22px;
+            margin-right: 24px;
         }
 
     }
@@ -39,6 +40,14 @@
     .area-product {
         border: 1px solid rgb(194, 193, 193);
         padding: 30px;
+        .product-empty{
+            p{
+                color: gray;
+                line-height: 24px;
+                text-align: center;
+            }
+
+        }
         ul {   
             gap: 25px;
             display: grid;
@@ -47,34 +56,48 @@
         }
     }
 
-    .area-button {
-        height: 100px;
+    .area-allocate {      
         width: 100%;
-        padding: 20px 18px;
-        outline: 1px solid blue;
-        h4{
+        padding: 20px 18px;        
+        h4{          
             margin-bottom: 8px;
         }
         p{
-            margin-bottom: 4px;
-        }
-        
+            margin-bottom: 4px;            
+        }  
+        .bar-word{
+            display: flex;
+           
+            p{
+                font-size: 14px;                
+            }
+        }      
         .progress{
             height: 25px;            
             .progress-bar{
-                color:black;       
+                color:black;
             }
-        }    
+            .white{
+                margin-top: 4px;
+                color:white;
+                font-size: 13px;
+            }
+        } 
+        .allocate-ingredient,.allocate-sweet{
+            margin-top: 20px;
+        }
+        
     }  
 
     .area-picked {
         border: 1px solid rgb(194, 193, 193);
-        padding: 10px;
+        padding: 30px;
+       
 
         ul {         
             display: grid;
-            grid-template-columns: repeat(4,  200px); /* 根據容器大小自動填充 box */
-            justify-content: space-around;
+            grid-template-columns: repeat(4, 200px); 
+            justify-content: space-between;
             @media screen and (max-width: 1200px) {
                 grid-template-columns: repeat(auto-fill,  200px);
             }
