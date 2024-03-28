@@ -13,18 +13,15 @@ export default defineStore ('DIYStore' ,{
     addToDIY(product){
       console.log('pinia cate',product.category)
       if(product.category ==='茶類' || product.category ==='果汁' || product.category ==='其他基底'){
-        this.diyBasic.push(product)
+        const check = this.diyBasic.some((item) => item.id === product.id)
+        if(!check) this.diyBasic.push(product)
       }else if(product.category ==='口感配料' || product.category ==='水果類' || product.category ==='香料與草本'|| product.category ==='其他配料'){
-        this.diyIngredient.push(product)
+        const check = this.diyIngredient.some((item) => item.id === product.id)
+        if(!check) this.diyIngredient.push(product)
       }else if(product.category ==='糖類'){
-        this.diySweet.push(product)
+        const check = this.diySweet.some((item) => item.id === product.id)
+        if(!check) this.diySweet.push(product)
       }
-
-    
-      console.log('pinia diyProducts',this.diyProducts)
-      console.log('pinia basic',this.diyBasic)
-      console.log('pinia basic',this.diyIngredient)
-      console.log('pinia basic',this.diySweet)
    
     }
   }
