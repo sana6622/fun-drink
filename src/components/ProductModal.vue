@@ -348,8 +348,7 @@ export default {
   watch: {
     product() {
       this.resetData()
-      this.tempProduct = this.product
-      console.log('product',this.product)
+      this.tempProduct = this.product     
       const propSelect = this.categoryOption.find((item) => item.text === this.tempProduct.category)
       if (propSelect) {
         this.selected = propSelect.typeValue
@@ -362,8 +361,7 @@ export default {
         this.tag = this.tempProduct?.description[1].tag
         this.sell = this.tempProduct?.description[2].sell
         this.contents = this.tempProduct.content
-        let originDes = this.tempProduct?.description[0]?.des
-        console.log('originDes',originDes)
+        let originDes = this.tempProduct?.description[0]?.des       
         if(originDes)this.des = originDes.map((item) => ({ value: item }))
       }
     }

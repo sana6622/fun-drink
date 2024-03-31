@@ -154,8 +154,7 @@ export default {
       this.products=[]
       this.ingredientsMenu[itemIndex].subTitle.forEach(category=>{        
       this.getProducts(category)
-      })     
-        
+      })            
       }
     },
 
@@ -164,8 +163,7 @@ export default {
       this.$router.push(`products/${id}`)
     },
 
-    addToCart(product_id,qty){
-      console.log(product_id,qty)      
+    addToCart(product_id,qty){         
         const cartData = {
         product_id,
         qty,

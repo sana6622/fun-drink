@@ -215,8 +215,7 @@ export default {
     // }
   },
   watch: {
-    pagination() {
-      console.log('change page')
+    pagination() {    
       this.getProducts()
     }
   }

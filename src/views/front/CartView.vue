@@ -26,15 +26,10 @@ export default {
       formData:{},
     }
   },
-  mounted(){
-    console.log('step',this.step)
 
-  },
   methods:{
     getStep(number){
-      console.log('get numb',number)
-      this.step = number
-      console.log('get step',number)
+      this.step = number    
     },
   }
 }

@@ -46,7 +46,6 @@
 
 <script>
 import axios from 'axios';
-console.log(import.meta.env);
 const { VITE_URL } = import.meta.env;
 
 export default {

@@ -141,36 +141,28 @@ export default {
       this.isLoading = true    
         this.$http
           .get(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/orders?page=${this.pagination}`)
-          .then((res) => {
-            console.log('res data', res.data)
+          .then((res) => {           
             this.orderData = res.data.orders           
             this.totalPage = res.data.pagination.total_pages    
             this.countNumber()       
-            this.isLoading = false 
-        
+            this.isLoading = false         
           })
           .catch((error) => {
             console.log('error', error)
-          })
-    
+          })    
     },
 
     //計算總杯數
     countNumber(){
-      console.log(123)
       this.orderData.forEach(item=>{
         let totalQty = 0;
-        Object.values(item.products).forEach(product => {
-          console.log('prodcut.qty',product.qty)
-            totalQty += product.qty;
-            
+        Object.values(item.products).forEach(product => {        
+            totalQty += product.qty;            
          });
-        item.totalQty = totalQty
-        
-      })
-    
-
+        item.totalQty = totalQty        
+      })   
     },
+
     openModal( order) {   
       this.tempOrder = {}
       this.$refs.orderModal.showModal()
@@ -179,7 +171,6 @@ export default {
 
     dele(id) {
       this.deleteId = id
-      console.log('id外',this.deleteId)
       // this.deleteProductTitle = title
       this.$refs.deleteModal.showModal()
 
@@ -206,9 +197,7 @@ export default {
     },
 
     clickPage(page) {
-      console.log('click page', page)
-      this.pagination = page
-      
+      this.pagination = page      
     }
 
  

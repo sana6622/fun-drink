@@ -220,7 +220,6 @@ export default {
   //   totalPrice() {
   //     // let total = 0
   //     // this.productArray.forEach(item=>{
-  //     //   console.log('item',item)
   //     //   total += item.qty*item.product.price
   //     // })
   //     // return total

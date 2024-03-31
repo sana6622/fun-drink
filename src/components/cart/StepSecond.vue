@@ -226,8 +226,7 @@ export default {
           
           //toggle 功能
           const num = this.carts.length
-          this.opened = Array(num).fill(false)
-          console.log('open', this.opened)
+          this.opened = Array(num).fill(false)       
         })
         .catch((error) => {
           console.log('error', error)
@@ -246,9 +245,7 @@ export default {
       this.renderAddress++
     },
 
-    onSubmit() {
-      // const datas = { ...this.formData }
-      console.log('formData.user.email', this.formData.user.email)
+    onSubmit() {  
       const currentTime = new Date()  
       const date =`${ currentTime.getMonth() + 1}/${currentTime.getDate()} `;       
       const Time = `${currentTime.getHours()}:${currentTime.getMinutes()}`;    

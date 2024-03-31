@@ -57,7 +57,6 @@
 
 <script>
 import axios from 'axios'
-console.log(import.meta.env)
 const { VITE_URL } = import.meta.env
 
 export default {
@@ -87,8 +86,7 @@ export default {
     },
 
     //突然出現navbar無法收闔下拉區塊問題，可能是bootstarp更版造成，暫時使用這個方式處理
-    clickNavBtn(){  
-      console.log('111')      
+    clickNavBtn(){             
       if(this.$refs.navRef.classList.contains('d-none')){
         this.$refs.navRef.classList.remove('d-none')
       }else{

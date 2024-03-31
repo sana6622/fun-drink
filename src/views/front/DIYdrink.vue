@@ -160,8 +160,15 @@
           <div class="allocate-ice">
             <h4>冰量:</h4>
             <div class="form-check form-check-inline" v-for="ice in iceList" :key="ice.id">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" :id=ice.id  :value=ice.value v-model="iceData">
-                <label class="form-check-label mt-1" :for=ice.id>{{ ice.value }}</label>
+              <input
+                class="form-check-input"
+                type="radio"
+                name="inlineRadioOptions"
+                :id="ice.id"
+                :value="ice.value"
+                v-model="iceData"
+              />
+              <label class="form-check-label mt-1" :for="ice.id">{{ ice.value }}</label>
             </div>
           </div>
 
@@ -210,11 +217,11 @@
             </li>
           </ul>
         </div>
-      </div>   
+      </div>
 
       <!-- Button trigger modal -->
       <div class="text-end">
-      <button type="button" class="btn btn-danger" @click="addDrink()">加入購物車</button>
+        <button type="button" class="btn btn-danger" @click="addDrink()">加入購物車</button>
       </div>
     </main>
     <!-- Modal -->
@@ -246,14 +253,11 @@
                 aria-label="Username"
                 v-model="drinkName"
               />
-             
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="submitDrink()">
-              送出
-            </button>
+            <button type="button" class="btn btn-primary" @click="submitDrink()">送出</button>
           </div>
         </div>
       </div>
@@ -298,9 +302,16 @@ export default {
       rateNumber: 0,
       totalPrice: 0,
       totalOriginPrice: 0,
-      iceList:[{id:'ice1',value:'正常'},{id:'ice2',value:'少冰'},{id:'ice3',value:'去冰'},{id:'ice4',value:'常溫'},{id:'ice5',value:'溫'},{id:'ice6',value:'熱'}],
+      iceList: [
+        { id: 'ice1', value: '正常' },
+        { id: 'ice2', value: '少冰' },
+        { id: 'ice3', value: '去冰' },
+        { id: 'ice4', value: '常溫' },
+        { id: 'ice5', value: '溫' },
+        { id: 'ice6', value: '熱' }
+      ],
       iceData: '正常',
-      drinkName:''
+      drinkName: ''
     }
   },
 
@@ -362,15 +373,14 @@ export default {
       //有無重複
       const check = this.pickedTemp.some((item) => item.id === product.id)
 
-      if(this.selectedNavIndex === 0 && this.totalRateBasic === 100){
+      if (this.selectedNavIndex === 0 && this.totalRateBasic === 100) {
         Swal.fire({
           // icon: "error",
           title: '基底比例已達100%',
           showConfirmButton: false,
           timer: 1500
         })
-      }
-      else if (this.pickedTemp.length < 4) {
+      } else if (this.pickedTemp.length < 4) {
         // 加入下方 基底 picked
         if (!check) {
           this.pickedTemp.push({
@@ -384,7 +394,7 @@ export default {
             rate: this.rateNumber,
             selectedNavIndex: this.selectedNavIndex,
             color: ''
-          })          
+          })
           // this.calculatePrice()
           this.changeColor(this.selectedNavIndex)
         }
@@ -448,7 +458,7 @@ export default {
       }
     },
 
-    calculateTotalRate(rateType){     
+    calculateTotalRate(rateType) {
       let totalRate = 0
       this[rateType].forEach((item) => {
         totalRate += item.rate
@@ -469,134 +479,119 @@ export default {
       return total
     },
 
-    //加入購物車 
+    //加入購物車
     addDrink() {
-      console.log('this.pickedTemp',this.pickedTemp)
       //確保資料都已儲存
       switch (this.selectedNavIndex) {
         case 0:
           this.pickedBasic = [...this.pickedTemp]
-          console.log('this.pickedBasic0',this.pickedBasic)        
-          break 
+          break
         case 1:
-          this.pickedIngredient= [...this.pickedTemp]
-          console.log('this.pickedIngredient',this.pickedIngredient)
+          this.pickedIngredient = [...this.pickedTemp]
           break
         case 2:
-          this.pickedSweet= [...this.pickedTemp]
-          console.log('this.pickedSweet',this.pickedSweet)
+          this.pickedSweet = [...this.pickedTemp]
           break
-      }    
-      this.checkDrink()     
+      }
+      this.checkDrink()
     },
 
     //確定是否都有填寫
-    checkDrink(){
+    checkDrink() {
       let totalRate = 0
       this.pickedBasic.forEach((item) => {
         totalRate += item.rate
-      })   
+      })
 
-      if( totalRate == 0){      
+      if (totalRate == 0) {
         Swal.fire({
-          position: "top-center",
-          icon: "error",
-          title: "請選擇基底",
+          position: 'top-center',
+          icon: 'error',
+          title: '請選擇基底',
           showConfirmButton: false,
           timer: 1500
-        });
-        
-      }else if(totalRate > 0 && totalRate < 100){     
+        })
+      } else if (totalRate > 0 && totalRate < 100) {
         Swal.fire({
-          position: "top-center",
-          icon: "error",
-          title: "基底比例應為100%，請再調整",
+          position: 'top-center',
+          icon: 'error',
+          title: '基底比例應為100%，請再調整',
           showConfirmButton: false,
           timer: 2000
-        });
-      }else{      
+        })
+      } else {
         this.showModal()
       }
-
     },
-    
 
     submitDrink() {
-      if(this.drinkName == ''){
+      if (this.drinkName == '') {
         Swal.fire({
-          position: "top-center",
-          icon: "error",
-          title: "請為您的飲料命名",
+          position: 'top-center',
+          icon: 'error',
+          title: '請為您的飲料命名',
           showConfirmButton: false,
           timer: 1500
-        });
-      }         
+        })
+      }
       //因為API限制，所以只能先登入，進行create 商品，再加入購物車,完成後登出
 
       //登入
-      this.isLoading=true,
-        this.$http.post(`${this.VITE_URL}/admin/signin`,{
-          username: 'taniya.hsu@gmail.com',
-          password: '123456789'
-        }).then(res =>{
-          console.log('login res',res)
-          const { token, expired } = res.data;
-          document.cookie = `hexschoolToken=${token}; expires=${new Date(expired)}`;
-          console.log('token',token)
-          const token1 = document.cookie.replace(
-        /(?:(?:^|.*;\s*)hexschoolToken\s*=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      )       
-          this.$http.defaults.headers.common['Authorization'] = token1
-          this.createProduct()
-
-        }).catch((error) => {
-            console.log('login error', error);
-            alert('登入失敗');
-          });
-      
+      ;(this.isLoading = true),
+        this.$http
+          .post(`${this.VITE_URL}/admin/signin`, {
+            username: 'taniya.hsu@gmail.com',
+            password: '123456789'
+          })
+          .then((res) => {
+            const { token, expired } = res.data
+            document.cookie = `hexschoolToken=${token}; expires=${new Date(expired)}`
+            const token1 = document.cookie.replace(
+              /(?:(?:^|.*;\s*)hexschoolToken\s*=\s*([^;]*).*$)|^.*$/,
+              '$1'
+            )
+            this.$http.defaults.headers.common['Authorization'] = token1
+            this.createProduct()
+          })
+          .catch((error) => {
+            console.log('login error', error)
+          })
 
       //登出
     },
 
-    createProduct() { 
-      const pickedAll =[...this.pickedBasic,...this.pickedIngredient,...this.pickedSweet]
+    createProduct() {
+      const pickedAll = [...this.pickedBasic, ...this.pickedIngredient, ...this.pickedSweet]
       let content = []
-      pickedAll.forEach(item=>{
-        console.log(item)
+      pickedAll.forEach((item) => {
         content.push({
-          count:item.rate,
-          goods:item.title,
-          type:item.type,
-          unit:item.unit,
+          count: item.rate,
+          goods: item.title,
+          type: item.type,
+          unit: item.unit
         })
       })
 
-      console.log('pickedAll',pickedAll)
-      console.log('content',content)
-      const timestamp = Date.now();
-      console.log('time',timestamp)
+      const timestamp = Date.now()
       const title = `${this.drinkName}-${timestamp}`
 
       const data = {
-        category:'DIY',
-        content:content,
+        category: 'DIY',
+        content: content,
         is_enabled: 1,
         num: 1,
         origin_price: this.totalOriginPrice,
-        unit:'杯',
+        unit: '杯',
         price: this.totalPrice,
-        title:title,
-        description:[{des:['自創飲品']},{tag:''},{sell:1},{ice:this.iceData}],
-
+        title: title,
+        description: [{ des: ['自創飲品'] }, { tag: '' }, { sell: 1 }, { ice: this.iceData }]
       }
-      console.log('data',data)
 
       this.$http
-        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`,{ data: data })
+        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`, { data: data })
         .then((res) => {
-         console.log('create res',res)
-         this.findDIYProduct(title)
+          console.log('create res', res)
+          this.findDIYProduct(title)
         })
         .catch((error) => {
           console.log('error', error)
@@ -605,12 +600,11 @@ export default {
 
     //尋找產品id + 加入購物車
     findDIYProduct(title) {
-      console.log('find title',title)
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=DIY`)
-        .then((res) => {          
-          const datas = res.data.products         
-          const index = datas.findIndex((item) => item.title === title)        
+        .then((res) => {
+          const datas = res.data.products
+          const index = datas.findIndex((item) => item.title === title)
           const findId = datas[index].id
           this.addIdToCart(findId, 1)
         })
@@ -620,7 +614,6 @@ export default {
     },
 
     addIdToCart(product_id, qty) {
-      console.log(product_id, qty)
       const cartData = {
         product_id,
         qty
@@ -629,15 +622,14 @@ export default {
         .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`, { data: cartData })
         .then((res) => {
           console.log('res', res)
-          this.isLoading=false,
-          this.hideModal()
+          ;(this.isLoading = false), this.hideModal()
           Swal.fire({
-          position: "top-center",
-          icon: "success",
-          title: "已成功加入購物車",
-          showConfirmButton: false,
-          timer: 1500
-        });
+            position: 'top-center',
+            icon: 'success',
+            title: '已成功加入購物車',
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
         .catch((error) => {
           console.log('cart error', error)
@@ -652,7 +644,7 @@ export default {
     ...mapState(DIYStore, ['diyIngredient']),
     ...mapState(DIYStore, ['diySweet']),
 
-    totalRateBasic() {    
+    totalRateBasic() {
       return this.calculateTotalRate('pickedBasic')
     },
     totalRateIngredient() {
