@@ -315,14 +315,15 @@ export default {
       categoryOption: [
         { value: 0, text: '熱門飲品', type: 'drink', typeValue: 1 },
         { value: 1, text: '創意飲品', type: 'drink', typeValue: 1 },
-        { value: 2, text: '茶類', type: 'ingredient', typeValue: 2 },
-        { value: 3, text: '果汁', type: 'ingredient', typeValue: 2 },
-        { value: 4, text: '其他基底', type: 'ingredient', typeValue: 2 },
-        { value: 5, text: '口感配料', type: 'ingredient', typeValue: 2 },
-        { value: 6, text: '水果類', type: 'ingredient', typeValue: 2 },
-        { value: 7, text: '香料與草本', type: 'ingredient', typeValue: 2 },
-        { value: 8, text: '其他配料', type: 'ingredient', typeValue: 2 },
-        { value: 9, text: '糖類', type: 'ingredient', typeValue: 2 }
+        { value: 2, text: 'DIY', type: 'drink', typeValue: 1 },
+        { value: 3, text: '茶類', type: 'ingredient', typeValue: 2 },
+        { value: 4, text: '果汁', type: 'ingredient', typeValue: 2 },
+        { value: 5, text: '其他基底', type: 'ingredient', typeValue: 2 },
+        { value: 6, text: '口感配料', type: 'ingredient', typeValue: 2 },
+        { value: 7, text: '水果類', type: 'ingredient', typeValue: 2 },
+        { value: 8, text: '香料與草本', type: 'ingredient', typeValue: 2 },
+        { value: 9, text: '其他配料', type: 'ingredient', typeValue: 2 },
+        { value: 10, text: '糖類', type: 'ingredient', typeValue: 2 }
       ],
 
       unitOption: [
@@ -358,11 +359,12 @@ export default {
         this.selectedItem = 0
       }
       if (!this.isCreate) {
-        let originDes = this.tempProduct?.description[0].des
-        this.des = originDes.map((item) => ({ value: item }))
         this.tag = this.tempProduct?.description[1].tag
         this.sell = this.tempProduct?.description[2].sell
         this.contents = this.tempProduct.content
+        let originDes = this.tempProduct?.description[0]?.des
+        console.log('originDes',originDes)
+        if(originDes)this.des = originDes.map((item) => ({ value: item }))
       }
     }
   },
@@ -407,8 +409,7 @@ export default {
       this[item].splice(index, 1)
     },
 
-    submitProduct() {
-      // console.log('this.selectedItem',this.selectedItem)
+    submitProduct() {   
       const desArray = this.des.map((item) => item.value)
       const datas = {
         ...this.tempProduct,
@@ -469,27 +470,27 @@ export default {
     filterOption() {
       //如果是選擇飲料，次分類值>1時(不是飲料的選項)， 預設值改為0
       if (this.selected == 1) {
-        if (this.selectedItem > 1) {
+        if (this.selectedItem > 2) {
           this.selectedItem = 0
         }
         return this.categoryOption.filter((item) => item.type === 'drink')
       } else {
-        //如果是選擇食材，次分類值<1時(不是食材的選項)， 預設值改為2
-        if (this.selectedItem <= 1) {
-          this.selectedItem = 2
+        //如果是選擇食材，次分類值<1時(不是食材的選項)， 預設值改為3
+        if (this.selectedItem <= 2) {
+          this.selectedItem = 3
         }
         return this.categoryOption.filter((item) => item.type === 'ingredient')
       }
     },
 
     filterUnitOption() {
-      if (this.selectedItem < 2) {
+      if (this.selectedItem < 3) {
         this.selectedUnit = 0
         return this.unitOption.filter((item) => item.type === 'drink')
-      } else if (this.selectedItem >= 2 && this.selectedItem < 5) {
+      } else if (this.selectedItem >= 3 && this.selectedItem < 6) {
         this.selectedUnit = 1
         return this.unitOption.filter((item) => item.type === 'basic')
-      } else if (this.selectedItem >= 5 && this.selectedItem < 9) {
+      } else if (this.selectedItem >= 6 && this.selectedItem < 10) {
         this.selectedUnit = 2
         return this.unitOption.filter((item) => item.type === 'ingredient')
       } else {

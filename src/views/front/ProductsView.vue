@@ -25,10 +25,10 @@
           </ul>
         </li>
       </ul>
-      <form role="search ">
+      <!-- <form role="search ">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
         <button class="btn btn-outline-danger disabled" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
     <main class="front-container">
 
@@ -69,8 +69,8 @@
                 <span v-show="item.price!=item.origin_price">原價 ${{ item.origin_price }}</span>
               </div>
               <div class="card-btn">
-                <button type="button" class="btn btn-outline-danger" @click="addToDIY(item)">加入調飲室</button>
-                <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)">加入購物車</button>
+                <button type="button" class="btn btn-outline-danger" @click="addToDIY(item)" v-if="isIngredient">加入調飲室</button>
+                <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)" v-else>加入購物車</button>
               </div>
             </div>
           </li>
@@ -106,6 +106,7 @@ export default {
       ],
       productCategory:'熱門飲品',
       products:[],
+      isIngredient:false,
     }
   },
   mounted() {
@@ -114,8 +115,7 @@ export default {
   },
   methods: {
     getProducts(category) {    
-      this.isLoading = true 
-      console.log('cate',`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
+      this.isLoading = true      
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
         .then((res) => {
@@ -132,8 +132,10 @@ export default {
     clickNav(menu) {      
       if (menu == 'drinkMenu') {
         this.menu = this.drinkMenu
+        this.isIngredient = false
       } else {
         this.menu = this.ingredientsMenu
+        this.isIngredient = true
       }
     },
 
@@ -156,6 +158,7 @@ export default {
         
       }
     },
+
     clickMore(id){
       console.log('click id',id)
       this.$router.push(`products/${id}`)
@@ -176,9 +179,7 @@ export default {
           console.log('error', error)
         })
     },
-    testLoading(){
-      this.isLoading = true
-    },
+  
     
     //加入pinia 
     ...mapActions(DIYStore,['addToDIY'])

@@ -129,7 +129,12 @@ export default {
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`)
         .then((res) => {
           this.carts = res.data.data
-          console.log('cart', res)
+          this.carts.carts.forEach(item=>{            
+            const index = item.product.title.lastIndexOf('-')
+            if(index!=-1){
+              item.product.title = item.product.title.substring(0,index)
+            }
+          })
           this.cartChangeLoading = ''
         })
         .catch((error) => {

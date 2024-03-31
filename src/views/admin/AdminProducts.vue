@@ -142,7 +142,8 @@ export default {
         '水果類',
         '香料與草本',
         '其他配料',
-        '糖類'
+        '糖類',
+        'DIY'
       ],
       selectedCagetory: '所有類別',
       pagination: 1,

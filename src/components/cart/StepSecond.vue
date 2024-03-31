@@ -42,7 +42,8 @@
                   <span>{{ content.count }} {{ content.unit }}</span>
                 </p>
               </div>
-            </div>
+            </div>          
+            <div class="my-3 mb-1 px-4 fs-5" v-if="item.product?.description[3]?.ice">冰量:{{item.product.description[3].ice}}</div>
           </div>
         </div>
         <p class="total-price d-flex fs-3 py-3 fw-bolder">
@@ -169,6 +170,7 @@
 </template>
 <script>
 import Loading from 'vue-loading-overlay'
+import Swal from 'sweetalert2'
 import 'vue-loading-overlay/dist/css/index.css'
 import { Form, Field } from 'vee-validate'
 import { RiSkipDownLine, RiSkipUpLine } from '@remixicon/vue'
@@ -190,12 +192,12 @@ export default {
       totalPrice: 0,
       formData: {
         user: {
-          name: '123 ',
-          email: '13@gmail.com',
-          tel: '0911111111',
-          address: '123123'
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: '66666'
+        message: ''
       },
       addressNew: '99999',
       addressType: '外送',
@@ -214,8 +216,12 @@ export default {
           const data = res.data.data.carts
           this.carts = Object.values(data)
           this.totalPrice = res.data.data.final_total
-          console.log('data', res.data.data.final_total)
-          console.log('carts', this.carts)
+          this.carts.forEach(item=>{            
+            const index = item.product.title.lastIndexOf('-')
+            if(index!=-1){
+              item.product.title = item.product.title.substring(0,index)
+            }
+          })
           this.cartChangeLoading = ''
           
           //toggle 功能
@@ -266,7 +272,13 @@ export default {
         .post(`${this.VITE_URL}/api/${this.VITE_NAME}/order`, { data: datas })
         .then((res) => {
           console.log('res', res)
-          alert(res.data.message)
+          Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "已成功建立訂單",
+          showConfirmButton: false,
+          timer: 1500
+        });
           //清空表單
           this.$refs.form.resetForm()
           this.$emit('step', 3)

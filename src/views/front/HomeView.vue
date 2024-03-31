@@ -191,8 +191,8 @@
                   <span>原價 ${{ item.origin_price }}</span>
                 </div>
                 <div class="card-btn">
-                  <button type="button" class="btn btn-outline-danger">加入調飲室</button>
-                  <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)">加入購物車</button>
+                  <button type="button" class="btn btn-outline-danger" @click="addToDIY(item)" v-if="isIngredient">加入調飲室</button>
+                  <button type="button" class="btn btn-danger" @click="addToCart(item.id,1)" v-else>加入購物車</button>
                 </div>
               </div>
             </swiper-slide>
@@ -242,16 +242,19 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import DIYStore from '../../stores/DIYStore'
+
 import { RiShoppingCart2Line } from '@remixicon/vue'
 import { RiStarSLine } from '@remixicon/vue'
+
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-
 import 'swiper/css' // core Swiper
 import 'swiper/css/navigation' // Navigation module
 import 'swiper/css/pagination' // Pagination module
-
 import { Pagination, Navigation, Autoplay } from 'swiper'
+
 import people1 from '../../../public/people1.png'
 import people2 from '../../../public/people2.png'
 import people3 from '../../../public/people3.png'
@@ -302,15 +305,16 @@ export default {
         }
       ],
       // category:'熱門飲品',
-      products: []
+      products: [],
+      isIngredient:false,
     }
   },
   mounted() {
     this.getProducts('熱門飲品')
   },
+
   methods: {
-    getProducts(category) {
-      console.log('category get', category)
+    getProducts(category) {     
       this.$http
         .get(`${this.VITE_URL}/api/${this.VITE_NAME}/products?category=${category}`)
         .then((res) => {
@@ -323,17 +327,21 @@ export default {
           console.log('error', error)
         })
     },
+
     clickCategory(category) {
       if (category === '熱門配料') {
         this.getProducts('口感配料')
+        this.isIngredient = true
       } else {
         this.getProducts(category)
+        this.isIngredient = false
       }
     },
-    clickMore(id){
-      console.log('click id',id)
+
+    clickMore(id){    
       this.$router.push(`products/${id}`)
     },
+
     addToCart(product_id,qty){      
         const cartData = {
         product_id,
@@ -348,6 +356,9 @@ export default {
           console.log('error', error)
         })
     },
+
+      //加入pinia 
+      ...mapActions(DIYStore,['addToDIY'])
   }
 }
 </script>
