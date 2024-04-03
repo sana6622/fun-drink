@@ -245,9 +245,6 @@
 import { mapActions } from 'pinia'
 import DIYStore from '../../stores/DIYStore'
 
-import { RiShoppingCart2Line } from '@remixicon/vue'
-import { RiStarSLine } from '@remixicon/vue'
-
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css' // core Swiper
@@ -261,8 +258,6 @@ import people3 from '../../../public/people3.png'
 
 export default {
   components: {
-    RiShoppingCart2Line,
-    RiStarSLine,
     Swiper,
     SwiperSlide
   },

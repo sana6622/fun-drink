@@ -77,12 +77,11 @@
 </template>
 
 <script>
-import { RiFacebookCircleFill, RiHeartFill, RiInstagramLine } from '@remixicon/vue'
+import { RiFacebookCircleFill, RiInstagramLine } from '@remixicon/vue'
 import { RiShoppingCart2Line } from '@remixicon/vue'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 export default {
   components: {
-    RiHeartFill,
     RiShoppingCart2Line,
     RiFacebookCircleFill,
     RiInstagramLine

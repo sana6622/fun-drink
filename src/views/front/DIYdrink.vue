@@ -197,7 +197,7 @@
                 <div class="img">
                   <img :src="pickedItem.imageUrl" alt="" />
                 </div>
-                <p>{{ pickedItem.title }} {{ pickedItem.originPrice }}</p>
+                <p>{{ pickedItem.title }}</p>
               </div>
               <button
                 type="button"
@@ -654,14 +654,18 @@ export default {
       return this.calculateTotalRate('pickedSweet')
     },
 
+    // eslint-disable-next-line vue/no-dupe-keys
     totalPrice() {
       const countPrice = this.calculatePrice('price')
       //因為要存到API 所以需要this.totalPrice
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.totalPrice = countPrice
       return countPrice
     },
+    // eslint-disable-next-line vue/no-dupe-keys
     totalOriginPrice() {
       const countPrice = this.calculatePrice('originPrice')
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
       this.totalOriginPrice = countPrice
       return countPrice
     }

@@ -1,7 +1,11 @@
 <template>
-  <div class="login">  
-
-  
+  <div class="login"> 
+    
+    <vue-particles
+            id="tsparticles"
+            :particlesLoaded="particlesLoaded"
+            :options="options"
+        />
   <div class="container">
     <div class="row justify-content-center">
       <h1 class=" mt-5 mb-5 font-weight-normal text-center">請先登入</h1>
@@ -40,20 +44,103 @@
       </div>
 
     </div>   
+
+
   </div>
 </div> 
 </template>
 
 <script>
 import axios from 'axios';
+
+
 const { VITE_URL } = import.meta.env;
 
 export default {
+  components:{
+  
+  },
   data() {
     return {
       user: {
         username: 'taniya.hsu@gmail.com',
         password: '123456789'
+      },
+      particlesLoaded: async (container) => {
+        console.log('particles contaainer loaded', container)
+      },
+      options:{
+        
+                    background: {
+                        color: {
+                            value: '#fffff'
+                        }
+                    },
+                    fpsLimit: 120,
+                    interactivity: {
+                        events: {
+                            onClick: {
+                                enable: true,
+                                mode: 'push'
+                            },
+                            onHover: {
+                                enable: true,
+                                mode: 'repulse'
+                            },
+                        },
+                        modes: {
+                            bubble: {
+                                distance: 400,
+                                duration: 2,
+                                opacity: 0.8,
+                                size: 40
+                            },
+                            push: {
+                                quantity: 4
+                            },
+                            repulse: {
+                                distance: 200,
+                                duration: 0.4
+                            }
+                        }
+                    },
+                    particles: {
+                        color: {
+                            value: '#c7713bff'
+                        },
+                        links: {
+                            color: '#c7713bff',
+                            distance: 150,
+                            enable: true,
+                            opacity: 0.5,
+                            width: 1
+                        },
+                        move: {
+                            direction: 'none',
+                            enable: true,
+                            outModes: 'bounce',
+                            random: false,
+                            speed: 3,
+                            straight: false
+                        },
+                        number: {
+                            density: {
+                                enable: true,
+                            },
+                            value: 40
+                        },
+                        opacity: {
+                            value: 0.8
+                        },
+                        shape: {
+                            type: 'circle'
+                        },
+                        size: {
+                            value: { min: 1, max: 5 }
+                        }
+                    },
+                    detectRetina: true
+                
       }
     };
   },

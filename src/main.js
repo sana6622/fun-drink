@@ -5,14 +5,15 @@ import "bootstrap/dist/js/bootstrap.js"
 import 'bootstrap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+
 // 引入 VeeValidate 元件跟功能
 import {Field, Form, ErrorMessage, defineRule, configure } from 'vee-validate';
 // import AllRules from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n'; 
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import { required, email } from '@vee-validate/rules';
-
-
+import Particles from '@tsparticles/vue3'
+import { loadFull } from 'tsparticles'
 
 import App from './App.vue'
 import router from './router'
@@ -33,13 +34,17 @@ import router from './router'
 defineRule('required', required);
 defineRule('email', email);
 
-
-
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios,axios)
+app.use(Particles, {
+  init: async engine => {
+    await loadFull(engine) // you can load the full tsParticles library from "tsparticles" if you need it
+    // await loadSlim(engine) // or you can load the slim version from "tsparticles-slim" if don't need Shapes or Animations
+  }
+})
 app.component('VField', Field)
 app.component('VForm', Form)
 app.component('ErrorMessage', ErrorMessage)
