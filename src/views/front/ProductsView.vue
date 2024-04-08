@@ -110,7 +110,10 @@ export default {
   },
   mounted() {
     this.menu = this.drinkMenu
-    this.getProducts(this.productCategory)
+    this.productCategory='所有飲品',
+        this.drinkMenu.forEach(item=>{
+          this.getProducts(item.title)
+        })
   },
   methods: {
     getProducts(category) {    
@@ -130,10 +133,23 @@ export default {
 
     clickNav(menu) {      
       if (menu == 'drinkMenu') {
+        this.products=[]
         this.menu = this.drinkMenu
+        this.productCategory='所有飲品',
+        this.drinkMenu.forEach(item=>{
+          this.getProducts(item.title)
+        })
+        
         this.isIngredient = false
       } else {
+        this.products=[]
         this.menu = this.ingredientsMenu
+        this.productCategory='所有配料',
+        this.ingredientsMenu.forEach(item=>{        
+          item.subTitle.forEach(category=>{
+            this.getProducts(category)
+          })
+        })
         this.isIngredient = true
       }
     },

@@ -61,7 +61,11 @@ const router = createRouter({
         }
       ]
     }
-  ]
+  ],
+  //換頁回到最上面
+  scrollBehavior(to ,from ,savedPosition){
+    return savedPosition || {top:0}  
+  }
 })
 
 export default router
