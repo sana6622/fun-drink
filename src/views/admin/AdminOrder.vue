@@ -100,8 +100,6 @@
 import DeleteModal from '@/components/DeleteModal.vue'
 import OrderModal from'@/components/OrderModal.vue'
 import LoadingAnimation from '../../components/LoadingAnimation.vue'
-import Swal from 'sweetalert2'
-import { watch } from 'vue'
 
 export default {
   components: { 

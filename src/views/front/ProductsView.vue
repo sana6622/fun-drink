@@ -1,5 +1,4 @@
 <template>
-
   <div id="ProductView">
     <LoadingAnimation :isLoading="isLoading"></LoadingAnimation>  
 
@@ -83,9 +82,9 @@
 
 <script>
 import LoadingAnimation from '../../components/LoadingAnimation.vue'
-
 import {mapActions} from 'pinia'
 import DIYStore from '../../stores/DIYStore'
+import AddCartStore from '@/stores/AddCartStore'
 
 export default {
   components: {
@@ -158,29 +157,14 @@ export default {
       }
     },
 
-    clickMore(id){
-      console.log('click id',id)
+    clickMore(id){     
       this.$router.push(`products/${id}`)
-    },
-
-    addToCart(product_id,qty){         
-        const cartData = {
-        product_id,
-        qty,
-      };     
-        this.$http
-        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
-        .then((res) => {
-         console.log('res',res)
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
     },
   
     
     //加入pinia 
-    ...mapActions(DIYStore,['addToDIY'])
+    ...mapActions(DIYStore,['addToDIY']),
+    ...mapActions(AddCartStore,['addToCart'])
 
 
 

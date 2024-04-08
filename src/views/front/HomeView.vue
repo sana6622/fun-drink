@@ -95,7 +95,9 @@
             <li>選擇冷熱</li>
             <li>為自己的飲品命名</li>
           </ul>
-          <button type="button" class="btn btn-danger">立即開始製作</button>
+
+          <RouterLink to="/DIYdrink" class="btn btn-danger button"> 立即開始製作</RouterLink>
+          
         </div>
       </section>
       <!--end manufacture-->
@@ -244,6 +246,7 @@
 <script>
 import { mapActions } from 'pinia'
 import DIYStore from '../../stores/DIYStore'
+import AddCartStore from '@/stores/AddCartStore'
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -337,23 +340,25 @@ export default {
       this.$router.push(`products/${id}`)
     },
 
-    addToCart(product_id,qty){      
-        const cartData = {
-        product_id,
-        qty,
-      };     
-        this.$http
-        .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
-        .then((res) => {
-         console.log('res',res)
-        })
-        .catch((error) => {
-          console.log('error', error)
-        })
-    },
+    // addToCart(product_id,qty){      
+    //     const cartData = {
+    //     product_id,
+    //     qty,
+    //   }; 
+
+    //     this.$http
+    //     .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
+    //     .then((res) => {
+    //      console.log('res',res)
+    //     })
+    //     .catch((error) => {
+    //       console.log('error', error)
+    //     })
+    // },
 
       //加入pinia 
-      ...mapActions(DIYStore,['addToDIY'])
+      ...mapActions(DIYStore,['addToDIY']),
+      ...mapActions(AddCartStore,['addToCart'])
   }
 }
 </script>

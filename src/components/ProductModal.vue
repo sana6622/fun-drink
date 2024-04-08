@@ -65,11 +65,11 @@
                     <option
                       :value="item.value"
                       v-for="(item, index) in filterOption"
-                      :key="`option-${index}`"                     
-                    >                 
+                      :key="`option-${index}`"
+                    >
                       {{ item.text }}
                     </option>
-                  </select>              
+                  </select>
                 </div>
 
                 <div class="mb-3 col-md-4">
@@ -168,7 +168,7 @@
 
             <div v-if="selected == 1">
               <h6 class="fs-4 mb-3">內容</h6>
-              <div class="row mb-2 d-none d-sm-flex">                
+              <div class="row mb-2 d-none d-sm-flex">
                 <div class="col-1 fs-5"></div>
                 <div class="col-3 fs-5">成分</div>
                 <div class="col-3 fs-5">分類</div>
@@ -176,10 +176,8 @@
                 <div class="col-2 fs-5">數量</div>
               </div>
               <div class="row mb-2" v-for="(item, index) in contents" :key="`content-${index}`">
-                <div class="col-12  col-sm-1 fs-5 d-flex justify-content-between d-sm-block  mb-2">
-                  <p class="text-center pt-2">
-                    {{ index + 1 }}.
-                  </p>              
+                <div class="col-12 col-sm-1 fs-5 d-flex justify-content-between d-sm-block mb-2">
+                  <p class="text-center pt-2">{{ index + 1 }}.</p>
 
                   <button
                     type="button"
@@ -188,53 +186,60 @@
                   >
                     -
                   </button>
-
                 </div>
-                <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block mb-2" >
+                <div
+                  class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block mb-2"
+                >
                   <label class="w-25 d-sm-none text-center me-2 fs-5">成分:</label>
                   <input
                     id="goods"
                     type="text"
-                    class="form-control "
+                    class="form-control"
                     placeholder="請輸入成分"
                     v-model="item.goods"
                   />
                 </div>
-                <div class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block  mb-2" >
+                <div
+                  class="col-12 col-sm-3 d-flex align-items-center justify-content-center d-sm-block mb-2"
+                >
                   <label class="w-25 d-sm-none text-center me-2 fs-5">分類:</label>
                   <select class="form-select" aria-label="Select sub-categoty" v-model="item.type">
                     <option
                       :value="typeItem.text"
                       v-for="(typeItem, index) in contentTypeOption"
-                      :key="`contentType-${index}`"                     
+                      :key="`contentType-${index}`"
                     >
                       {{ typeItem.text }}
                     </option>
                   </select>
                 </div>
-                <div class=" col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block  mb-2">
+                <div
+                  class="col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block mb-2"
+                >
                   <label class="w-25 d-sm-none text-center me-2 fs-5">單位:</label>
                   <select class="form-select" aria-label="Select unit" v-model="item.unit">
                     <option
                       :value="unitItem.value"
                       v-for="(unitItem, unitIndex) in contentUnitOption"
-                      :key="`contentUnit-${unitIndex}`"                       
+                      :key="`contentUnit-${unitIndex}`"
                     >
                       {{ unitItem.value }}
                     </option>
                   </select>
                 </div>
-                <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block  mb-2" >
+                <div
+                  class="col-12 col-sm-2 d-flex align-items-center justify-content-center d-sm-block mb-2"
+                >
                   <label class="w-25 d-sm-none text-center me-2 fs-5">數量:</label>
                   <input
                     id="count"
                     type="text"
-                    class="form-control "
+                    class="form-control"
                     placeholder="請輸入數量"
                     v-model="item.count"
                   />
                 </div>
-                <div class="col-12 col-sm-1  mb-2">
+                <div class="col-12 col-sm-1 mb-2">
                   <button
                     type="button"
                     class="btn btn-danger d-none d-sm-block"
@@ -348,7 +353,7 @@ export default {
   watch: {
     product() {
       this.resetData()
-      this.tempProduct = this.product     
+      this.tempProduct = this.product
       const propSelect = this.categoryOption.find((item) => item.text === this.tempProduct.category)
       if (propSelect) {
         this.selected = propSelect.typeValue
@@ -361,8 +366,8 @@ export default {
         this.tag = this.tempProduct?.description[1].tag
         this.sell = this.tempProduct?.description[2].sell
         this.contents = this.tempProduct.content
-        let originDes = this.tempProduct?.description[0]?.des       
-        if(originDes)this.des = originDes.map((item) => ({ value: item }))
+        let originDes = this.tempProduct?.description[0]?.des
+        if (originDes) this.des = originDes.map((item) => ({ value: item }))
       }
     }
   },
@@ -407,7 +412,7 @@ export default {
       this[item].splice(index, 1)
     },
 
-    submitProduct() {   
+    submitProduct() {
       const desArray = this.des.map((item) => item.value)
       const datas = {
         ...this.tempProduct,
@@ -415,7 +420,7 @@ export default {
         unit: this.unitOption[this.selectedUnit].text,
         content: this.contents,
         description: [{ des: desArray }, { tag: this.tag }, { sell: this.sell }]
-      }     
+      }
       let api = `${this.VITE_URL}/api/${this.VITE_NAME}/admin/product`
 
       if (this.isCreate) {
@@ -469,12 +474,14 @@ export default {
       //如果是選擇飲料，次分類值>1時(不是飲料的選項)， 預設值改為0
       if (this.selected == 1) {
         if (this.selectedItem > 2) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.selectedItem = 0
         }
         return this.categoryOption.filter((item) => item.type === 'drink')
       } else {
         //如果是選擇食材，次分類值<1時(不是食材的選項)， 預設值改為3
         if (this.selectedItem <= 2) {
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
           this.selectedItem = 3
         }
         return this.categoryOption.filter((item) => item.type === 'ingredient')
@@ -483,15 +490,19 @@ export default {
 
     filterUnitOption() {
       if (this.selectedItem < 3) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.selectedUnit = 0
         return this.unitOption.filter((item) => item.type === 'drink')
       } else if (this.selectedItem >= 3 && this.selectedItem < 6) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.selectedUnit = 1
         return this.unitOption.filter((item) => item.type === 'basic')
       } else if (this.selectedItem >= 6 && this.selectedItem < 10) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.selectedUnit = 2
         return this.unitOption.filter((item) => item.type === 'ingredient')
       } else {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.selectedUnit = 3
         return this.unitOption.filter((item) => item.type == 'sugar')
       }

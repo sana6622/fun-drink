@@ -3,45 +3,53 @@
 
 #home {
     font-family: 'Noto Sans TC', sans-serif;
-    .fix-orange{
+
+    .fix-orange {
         width: 200px;
         position: fixed;
-        z-index: 99;          
-        bottom: 0px;  
-     
-        img{
+        z-index: 99;
+        bottom: 0px;
+
+        img {
             width: 100%;
         }
+
         @media screen and (max-width: 1200px) {
             width: 120px;
             bottom: 50px;
         }
+
         @media screen and (max-width: 991px) {
             bottom: 100px;
         }
+
         @media screen and (max-width: 767px) {
             bottom: 250px;
         }
 
         @media screen and (max-width: 575px) {
             display: none;
-            
+
         }
     }
-    .fix-blueberry{
+
+    .fix-blueberry {
         width: 100px;
         position: fixed;
         z-index: 99;
         right: 60px;
-        bottom: 300px;      
-        img{
+        bottom: 300px;
+
+        img {
             width: 100%;
         }
+
         @media screen and (max-width: 1200px) {
-           width: 60px;
-           right: 30px;
-           bottom: 300px;
+            width: 60px;
+            right: 30px;
+            bottom: 300px;
         }
+
         @media screen and (max-width: 991px) {
             bottom: 400px;
         }
@@ -49,7 +57,7 @@
         @media screen and (max-width: 575px) {
             display: none;
         }
-        
+
     }
 
 
@@ -61,6 +69,7 @@
         .banner-img-sm {
             width: 100%;
             z-index: -2;
+
             img {
                 width: 100%;
             }
@@ -168,7 +177,7 @@
     /*end of banner*/
 
     .customer {
-        position: relative;    
+        position: relative;
 
         .customer-main {
             width: 100%;
@@ -218,7 +227,7 @@
                 h3 {
                     margin-bottom: 20px;
                 }
-            }            
+            }
         }
 
         .customer-items {
@@ -422,7 +431,7 @@
 
             }
 
-            button {
+            .button {
                 font-size: 24px;
                 font-weight: 500;
                 line-height: 28px;
@@ -502,6 +511,7 @@
             margin-top: -120px;
             margin-bottom: 50px;
             padding-top: 150px;
+
             h3 {
                 margin-bottom: 20px;
             }
@@ -519,7 +529,7 @@
         margin-top: -100px;
         z-index: 2;
         position: relative;
- 
+
 
         h3 {
             margin-top: 100px;
@@ -686,13 +696,13 @@
 
 
         .products-title {
-            z-index: 1;         
+            z-index: 1;
             width: 80%;
             background-color: #fff;
             display: flex;
             justify-content: space-around;
             border-radius: 8px;
-            padding: 10px;       
+            padding: 10px;
             margin-bottom: 20px;
 
             li {
@@ -717,23 +727,27 @@
 
 
 
-     
+
         @media screen and (max-width: 991px) {
             .products-title {
                 width: 70%;
-                li{
+
+                li {
                     font-size: 20px;
                     font-weight: 500;
                     padding: 14px 18px;
                 }
             }
         }
-        @media screen and (max-width: 767px) {        
+
+        @media screen and (max-width: 767px) {
             padding-right: 0px;
             padding-left: 0px;
+
             .products-title {
                 width: 90%;
-                li{
+
+                li {
                     font-size: 18px;
                     font-weight: 500;
                     padding: 14px 14px;
@@ -745,19 +759,21 @@
         @media screen and (max-width: 575px) {
             .products-title {
                 width: 80%;
-                li{
+
+                li {
                     font-size: 16px;
                     font-weight: 500;
                     padding: 14px 8px;
                 }
             }
         }
-        @media screen and (max-width: 375px) {           
+
+        @media screen and (max-width: 375px) {
             .products-title {
-                li{
+                li {
                     font-size: 16px;
                     font-weight: 500;
-                    padding: 12px 6px;                  
+                    padding: 12px 6px;
                 }
             }
         }
@@ -801,14 +817,14 @@
 
             }
 
-            @media screen and (max-width: 580px) {               
+            @media screen and (max-width: 580px) {
 
                 .swiper-navigation {
                     display: none;
 
                     .swiper-button-prev {
                         left: 15px; //按鈕在swiper 外面
-                        
+
                     }
 
                     .swiper-button-next {
@@ -821,12 +837,13 @@
 
             }
         }
-        .card{
-            min-width: 300px;           
+
+        .card {
+            min-width: 300px;
         }
 
         .list-card {
-            
+
             background-color: #fff;
             flex: 1;
             padding: 15px 18px;
@@ -909,7 +926,7 @@
             .card-price {
                 text-align: start;
                 margin-top: auto;
-                margin-bottom: 16px;           
+                margin-bottom: 16px;
 
                 :nth-child(1) {
                     color: #E94709;
@@ -926,37 +943,41 @@
                 }
             }
 
-            .card-btn {          
+            .card-btn {
                 display: flex;
                 justify-content: space-between;
                 font-size: 20px;
                 line-height: 24px;
                 font-weight: 500;
                 margin-top: auto;
+
                 button {
                     flex: 1;
                     padding: 8px 16px;
                 }
+
                 :nth-child(1) {
                     margin-right: 12px;
                 }
             }
-           
-    
+
+
             @media screen and (max-width: 577px) {
-                h6{                  
+                h6 {
                     font-size: 20px;
                 }
+
                 .card-price {
-                    :nth-child(1) {                       
-                        font-size: 20px;                
+                    :nth-child(1) {
+                        font-size: 20px;
                     }
-                    :nth-child(2) {                       
-                        font-size: 14px;   
+
+                    :nth-child(2) {
+                        font-size: 14px;
                     }
                 }
             }
-        } 
+        }
 
     }
 
@@ -977,7 +998,7 @@
             text-align: center;
             padding-top: 150px;
             margin-bottom: 20px;
-            
+
         }
 
         li {
@@ -1014,23 +1035,26 @@
             .recommend-info {
                 width: 80%;
                 padding-left: 20px;
+
                 :nth-child(1) {
                     font-size: 24px;
                     font-weight: 500;
                     margin-bottom: 20px;
                 }
+
                 :nth-child(2) {
                     font-size: 20px;
                     line-height: 26px;
                     font-weight: 400;
                     color: #686869;
                 }
-            } 
+            }
 
         }
-        .recommend-button{
-            margin-top: 40px;            
-            text-align: center;           
+
+        .recommend-button {
+            margin-top: 40px;
+            text-align: center;
         }
 
         @media screen and (max-width: 575px) {
@@ -1039,25 +1063,29 @@
             /* 保持宽度不变，高度拉伸至容器的100% */
             background-repeat: no-repeat;
             margin-top: -100px;
-            h3 {
-                padding-top: 60px;             
-            }
-            li{              
-                flex-direction: column;
-                width: 100%;          
 
-                .recommend-info{                   
-                    width: 100%;                
+            h3 {
+                padding-top: 60px;
+            }
+
+            li {
+                flex-direction: column;
+                width: 100%;
+
+                .recommend-info {
+                    width: 100%;
+
                     :nth-child(1) {
                         text-align: center;
                         margin-top: 26px;
                         margin-bottom: 20px;
                     }
+
                     :nth-child(2) {
                         font-size: 16px;
                         line-height: 24px;
-                        
-                    }                          
+
+                    }
                 }
             }
         }
