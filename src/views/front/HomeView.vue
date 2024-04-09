@@ -26,7 +26,7 @@
         <div class="customer-main section-container">
           <h3>如果你是...</h3>
           <div class="customer-items">
-            <div class="customer-item">
+            <div class="customer-item" data-aos="fade-up">
               <div class="item-image">
                 <img src="../../../public/imgFeature01.png" alt="" />
               </div>
@@ -36,7 +36,7 @@
               </div>
             </div>
 
-            <div class="customer-item">
+            <div class="customer-item" data-aos="fade-up">
               <div class="item-image">
                 <img src="../../../public/imgFeature02.png" alt="" />
               </div>
@@ -46,7 +46,7 @@
               </div>
             </div>
 
-            <div class="customer-item">
+            <div class="customer-item " data-aos="fade-up">
               <div class="item-image">
                 <img src="../../../public/imgFeature03.png" alt="" />
               </div>
@@ -56,7 +56,7 @@
               </div>
             </div>
 
-            <div class="customer-item">
+            <div class="customer-item" data-aos="fade-up">
               <div class="item-image">
                 <img src="../../../public/imgFeature04.png" alt="" />
               </div>
@@ -66,7 +66,7 @@
               </div>
             </div>
 
-            <div class="customer-item">
+            <div class="customer-item" data-aos="fade-up">
               <div class="item-image">
                 <img src="../../../public/imgFeature05.png" alt="" />
               </div>
@@ -89,11 +89,11 @@
         <div class="main-step">
           <h3>做出專屬 你的飲料</h3>
           <ul>
-            <li>選擇基底飲品</li>
-            <li>選擇配料</li>
-            <li>選擇糖類</li>
-            <li>選擇冷熱</li>
-            <li>為自己的飲品命名</li>
+            <li  data-aos="zoom-in-down" data-aos-duration="900">選擇基底飲品</li>
+            <li data-aos="zoom-in-down" data-aos-duration="1200">選擇配料</li>
+            <li data-aos="zoom-in-down" data-aos-duration="1400">選擇糖類</li>
+            <li data-aos="zoom-in-down" data-aos-duration="1600">選擇冷熱</li>
+            <li data-aos="zoom-in-down" data-aos-duration="1800">為自己的飲品命名</li>
           </ul>
 
           <RouterLink to="/DIYdrink" class="btn btn-danger button"> 立即開始製作</RouterLink>
@@ -301,8 +301,7 @@ export default {
           img: [people2],
           score: 5
         }
-      ],
-      // category:'熱門飲品',
+      ],  
       products: [],
       isIngredient:false,
     }
@@ -339,22 +338,6 @@ export default {
     clickMore(id){    
       this.$router.push(`products/${id}`)
     },
-
-    // addToCart(product_id,qty){      
-    //     const cartData = {
-    //     product_id,
-    //     qty,
-    //   }; 
-
-    //     this.$http
-    //     .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
-    //     .then((res) => {
-    //      console.log('res',res)
-    //     })
-    //     .catch((error) => {
-    //       console.log('error', error)
-    //     })
-    // },
 
       //加入pinia 
       ...mapActions(DIYStore,['addToDIY']),
