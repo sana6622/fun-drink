@@ -27,16 +27,14 @@ export default defineStore ('DIYStore' ,{
       const check = this[name].some((item) => item.id === product.id)     
       if(!check) {
         this[name].push(product)
-        Swal.fire({
-          position: 'top-center',
+        Swal.fire({        
           icon: 'success',
           title: '已成功加入',
           showConfirmButton: false,
           timer: 1500
         })
       }else{
-        Swal.fire({
-          position: 'top-center',           
+        Swal.fire({                   
           title: '調飲室已經有囉!',
           showConfirmButton: false,
           timer: 1500

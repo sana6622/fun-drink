@@ -236,7 +236,7 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">請為您的飲料命名</h1>
+            <h3 class="modal-title fs-5" id="exampleModalLabel">請為您的飲料命名</h3>
             <button
               type="button"
               class="btn-close"
@@ -537,7 +537,7 @@ export default {
       //因為API限制，所以只能先登入，進行create 商品，再加入購物車,完成後登出
 
       //登入
-      ;(this.isLoading = true),
+      (this.isLoading = true),
         this.$http
           .post(`${this.VITE_URL}/admin/signin`, {
             username: 'taniya.hsu@gmail.com',

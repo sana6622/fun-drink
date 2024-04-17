@@ -18,8 +18,7 @@ export default defineStore ('AddCartStore' ,{
       axios
       .post(`${this.VITE_URL}/api/${this.VITE_NAME}/cart`,{data:cartData})
       .then(() => {    
-       Swal.fire({
-          position: 'top-center',
+       Swal.fire({         
           icon: 'success',
           title: '已成功加入購物車',
           showConfirmButton: false,
